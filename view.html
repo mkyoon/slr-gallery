@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>스르륵갤러리 | 방송)디지털개발국</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="css/custom.css" rel="stylesheet" />
+</head>
+<body data-role="document">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="index.html" class="navbar-brand">디지털개발국 스르륵갤러리</a>
+		</div>
+		<!-- navbar-collapse -->
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-role="button">Category <span class="caret"></span></a>
+					<ul class="dropdown-menu" data-role="menu">
+						<li><a href="list.html">Design</a></li>
+						<li><a href="list.html">UI</a></li>
+						<li><a href="list.html">Web</a></li>
+						<li><a href="list.html">App</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-role="button">Search <span class="caret"></span></a>
+					<div class="dropdown-menu" data-role="menu">
+						<form action="">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search for..." />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><span class="sr-only">Search</span><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
+						</form>
+					</div>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="write.html">글쓰기</a></li>
+				<li><a href="#">마이페이지</a></li>
+				<li><a href="#">로그아웃</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#loginModal">로그인</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#signinModal">회원가입</a></li>
+			</ul>
+		</div>
+		<!-- //navbar-collapse -->
+	</div>
+</nav>
+
+<div class="container" data-role="main">
+
+	<div class="page-header">
+		<h2><br />글 제목</h2>
+	</div>
+	
+	<div class="col-md-8 view-content">
+		<div class="view-meta">
+			<span class="glyphicon glyphicon-folder-open"></span> <a href="list.html">UI Dev.</a>
+			<span class="glyphicon glyphicon-calendar"></span> 2015-02-06
+			<span class="glyphicon glyphicon-eye-open"></span> 368
+		</div>
+		
+		<div class="view-detail">
+			에디터 입력 내용<br />
+			에디터 입력 내용<br />
+			에디터 입력 내용<br />
+			에디터 입력 내용<br />
+			에디터 입력 내용<br />
+		</div>
+		<div class="view-tags">
+			<span class="glyphicon glyphicon-tags"></span> 
+			<a href="list.html">Interaction</a>, 
+			<a href="list.html">CSS</a>,
+			<a href="list.html">Transition</a>,
+			<a href="list.html">Transform</a>,
+			<a href="list.html">Button</a>
+		</div>
+		
+		<div class="clearfix page-header">
+			<h3>Comments</h3>
+		</div>
+		
+		<div class="view-comment">
+			<ul>
+				<li>
+					<div class="comment-name">
+						<a href="list.html">
+							<img src="http://2.bp.blogspot.com/_4MGEQ5wdUbY/TVCNjcWKb_I/AAAAAAAAB-o/kgaLRokyxdY/s1600/Profile1.jpg" alt="윤미경님의 사진" style="width:32px; height:32px;" />
+							윤미경(mkyoon)
+						</a>
+						2015-02-06
+					</div>
+					<div class="comment-body">
+						댓글 내용
+					</div>
+				</li>
+				<li>
+					<div class="comment-name">
+						<a href="list.html">
+							<img src="http://2.bp.blogspot.com/_4MGEQ5wdUbY/TVCNjcWKb_I/AAAAAAAAB-o/kgaLRokyxdY/s1600/Profile1.jpg" alt="윤미경님의 사진" style="width:32px; height:32px;" />
+							윤미경(mkyoon)
+						</a>
+						2015-02-06
+					</div>
+					<div class="comment-body">
+						댓글 내용
+					</div>
+				</li>
+			</ul>
+			<div class="write-comment well">
+				<form action="#">
+					<textarea class="form-control" cols="40" rows="3"></textarea>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 view-sidebar">
+		<div class="view-writer">
+			<a href="list.html">
+				<img src="http://2.bp.blogspot.com/_4MGEQ5wdUbY/TVCNjcWKb_I/AAAAAAAAB-o/kgaLRokyxdY/s1600/Profile1.jpg" alt="윤미경님의 사진" style="width:32px; height:32px;" />
+				윤미경(mkyoon)
+			</a>
+		</div>
+		<div class="more-writer">
+			<h4>More by <a href="list.html">윤미경(mkyoon)</a></h4>
+			<ul class="clearfix">
+				<li class="col-md-6 col-sm-6 col-xs-6">
+					<a href="view.html">
+						<div class="item-container">
+							<div class="img-frame"><img class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjIwMHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 200px;" /></div>
+						</div>
+					</a>
+				</li>
+				<li class="col-md-6 col-sm-6 col-xs-6">
+					<a href="view.html">
+						<div class="item-container">
+							<div class="img-frame"><img class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjIwMHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 200px;" /></div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="more-item">
+			<h4>More from <a href="list.html">Interaction</a></h4>
+			<ul class="clearfix">
+				<li class="col-md-6 col-sm-6 col-xs-6">
+					<a href="view.html">
+						<div class="item-container">
+							<div class="img-frame"><img class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjIwMHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 200px;" /></div>
+						</div>
+					</a>
+				</li>
+				<li class="col-md-6 col-sm-6 col-xs-6">
+					<a href="view.html">
+						<div class="item-container">
+							<div class="img-frame"><img class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjIwMHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 200px;" /></div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="more-item">
+			<h4>More from <a href="list.html">CSS</a></h4>
+			<ul class="clearfix">
+				<li class="col-md-6 col-sm-6 col-xs-6">
+					<a href="view.html">
+						<div class="item-container">
+							<div class="img-frame"><img class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjIwMHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 200px;" /></div>
+						</div>
+					</a>
+				</li>
+				<li class="col-md-6 col-sm-6 col-xs-6">
+					<a href="view.html">
+						<div class="item-container">
+							<div class="img-frame"><img class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjIwMHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 200px;" /></div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="clearfix page-header">
+		<h2><span class="sr-only">Footer</span></h2>
+	</div>
+	
+	<div class="well">
+		Powered by 디지털개발국<br />
+		Copyright 디지털개발국. All rights reserved.
+	</div>
+
+</div>
+
+
+<!-- Modals -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>로그인</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="loginId">아이디</label>
+					<input type="text" class="form-control" id="loginID" placeholder="CJ ONE 아이디" />
+				</div>
+				<div class="form-group">
+					<label for="loginPW">비밀번호</label>
+					<input type="password" class="form-control" id="loginPW" placeholder="" />
+				</div>
+				<p>
+					<a href="https://www.cjone.com/cjmportal/hpuf70T1Form.do" target="_blank">CJ ONE ID 찾기</a> / 
+					<a href="#">비밀번호 찾기</a>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">로그인</button>				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="signinModal" tabindex="-1" data-role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>회원가입</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="signinID">아이디</label>
+					<input type="text" class="form-control" id="signinID" placeholder="CJ ONE ID" />
+				</div>
+				<div class="form-group">
+					<label for="signinName">이름</label>
+					<input type="text" class="form-control" id="signinName" placeholder="Name" />
+				</div>
+				<div class="form-group">
+					<button type="button" class="btn btn-default">CJ ONE 회원확인</button>
+					<span>확인되었습니다.</span>
+				</div>
+				<div class="form-group">
+					<label for="signinPW">비밀번호</label>
+					<input type="password" class="form-control" id="signinPW" placeholder="" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">가입하기</button>				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$('.dropdown-menu').click(function(e) {
+		e.stopPropagation();
+	});
+</script>
+</body>
+</html>

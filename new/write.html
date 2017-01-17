@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<title>Media Gallery | 방송)디지털개발국 | CJ E&amp;M</title>
+
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/gallery.css" rel="stylesheet" />
+<!--[if lte IE 8]><link href="css/ie.css" rel="stylesheet" /><![endif]-->
+<!-- <link href="css/test.css" rel="stylesheet" /> -->
+</head>
+<body data-role="document">
+
+<div class="wrapper">
+	<!-- 로그아웃 상태 시작
+	<ul class="gnb-menu">
+		<li><a href="#facebook"><span class="glyphicon glyphicon-lock"></span> Log In</a></li>
+		<li><a href="#facebook" class="log"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li>
+	</ul>
+	<!-- 로그아웃 상태 끝 -->
+	<!-- 로그인 상태 시작 -->
+	<ul class="gnb-menu">
+		<li><a href="#" class="add" data-toggle="modal" data-target="#writeModal">Add Work</a></li>
+		<li><a href="mypage.html"><span class="glyphicon glyphicon-user"></span> My Page</a></li>
+		<li><a href="#facebook" class="log"><span class="glyphicon glyphicon-lock"></span> Log Out</a></li>
+	</ul>
+	<!-- 로그인 상태 끝 -->
+	<div class="gnb container">
+		<button type="button" class="sidebar-toggle">
+			<span class="sr-only">Toggle Sidebar</span>
+			<span class="glyphicon glyphicon-menu-hamburger"></span>
+		</button>
+		<!-- <button type="button" class="gnb-toggle">
+			<span class="sr-only">Toggle GNB Menu</span>
+			<span class="glyphicon glyphicon-plus"></span>
+		</button> -->
+		<h1><a href="./">Media Gallery</a></h1>
+		<div class="gnb-search">
+			<a href="#" class="search-open"><span class="glyphicon glyphicon-search"></span> <span class="search-text">Search</span></a>
+			<form action="">
+				<div class="search-form input-group">
+					<input type="text" class="form-control" placeholder="Search for..." />
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+							<span class="sr-only">Search</span>
+						</button>
+						<button type="button" class="btn btn-default search-close">
+							<span class="glyphicon glyphicon-remove"></span>
+							<span class="sr-only">Close</span>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="sidebar container">
+		<h2 class="sr-only">Activity</h2>
+		<ul class="user-menu">
+			<li><a href="#" class="addwork" data-toggle="modal" data-target="#writeModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Work</a></li>
+			<li><a href="mypage.html" class="mypage"><span class="glyphicon glyphicon-folder-close"></span> My Page</a></li>
+		</ul>
+
+		<h2>Menu</h2>
+		<div class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><h3><span class="glyphicon glyphicon-menu-hamburger"></span> Category</h3></a>
+			<ul class="category-menu dropdown-menu">
+				<li><a href="#">&middot; Design</a></li>
+				<li><a href="#" class="on">&middot; UI Development</a></li>
+				<li><a href="#">&middot; WEB Development</a></li>
+				<li><a href="#">&middot; APP Development</a></li>
+			</ul>
+		</div>
+		<h3><span class="glyphicon glyphicon-tag"></span> Filter by Topic</h3>
+		<div class="sort dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">Tag 1</a></li>
+				<li><a href="#">Tag 2 Tag 2 Tag 2 Tag 2 Tag 2</a></li>
+				<li><a href="#">Tag 3</a></li>
+				<li><a href="#">Tag 4</a></li>
+				<li><a href="#">Tag 5</a></li>
+			</ul>
+		</div>
+		<div class="sort dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Popular <span class="glyphicon glyphicon-triangle-bottom"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">Recent</a></li>
+				<li><a href="#">Most Viewed</a></li>
+				<li><a href="#">Most Commented</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="container page-container" data-role="main">
+		<div class="page-header temp-header">
+			<h2>Recent Items</h2>
+		</div>
+		
+		<ul class="item-list">
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="260x184" src="images/temp/gallery1.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery1.jpg" style="background-image:url('images/temp/gallery1.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery1.jpg',sizingMethod='scale');"></div>
+						<div class="feature"><span class="video"></span></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="" src="images/temp/gallery2.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery2.jpg" style="background-image:url('images/temp/gallery2.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery2.jpg',sizingMethod='scale');"></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">Create Your Own Voice - Branding &amp; Books Correspondent</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<!-- 썸네일이 없을 경우 "item-text" 클래스명 추가 -->
+			<li class="item-container item-text col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<!-- 썸네일 없을 경우 "<a>..</a>" 출력 안함. -->
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<div class="item-content"><a href="view.html">최근 몇 년 사이에 UX 디자인이라는 용어는 우리 에게 너무나 익숙한 단어가 되어 버렸습니다. 분야를 막론하고 소위 만드는 작업이 진행되는 곳 에서는 너 나 할 것 없이 UX디자인 고려라는 수식 어를 사용 하고 있는데요. 특히 IT 분야 에서 PC나 모바일 웹을 구성할 때, UX 디자인은 반드시 고려 해야 하는 핵심 요소가 되어 버렸습니다. 최근 몇 년 사이에 UX 디자인이라는 용어는 우리 에게 너무나 익숙한 단어가 되어 버렸습니다. 분야를 막론하고 소위 만드는 작업이 진행되는 곳 에서는 너 나 할 것 없이 UX디자인 고려라는 수식 어를 사용 하고 있는데요. 특히 IT 분야 에서 PC나 모바일 웹을 구성할 때, UX 디자인은 반드시 고려 해야 하는 핵심 요소가 되어 버렸습니다.</a></div>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="260x184" src="images/temp/gallery3.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery3.jpg" style="background-image:url('images/temp/gallery3.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery3.jpg',sizingMethod='scale');"></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="260x184" src="images/temp/gallery1.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery1.jpg" style="background-image:url('images/temp/gallery1.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery1.jpg',sizingMethod='scale');"></div>
+						<div class="feature"><span class="video"></span></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container item-text col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<div class="item-content"><a href="view.html">최근 몇 년 사이에 UX 디자인이라는 용어는 우리 에게 너무나 익숙한 단어가 되어 버렸습니다. 분야를 막론하고 소위 만드는 작업이 진행되는 곳 에서는 너 나 할 것 없이 UX디자인 고려라는 수식 어를 사용 하고 있는데요. 특히 IT 분야 에서 PC나 모바일 웹을 구성할 때, UX 디자인은 반드시 고려 해야 하는 핵심 요소가 되어 버렸습니다. 최근 몇 년 사이에 UX 디자인이라는 용어는 우리 에게 너무나 익숙한 단어가 되어 버렸습니다. 분야를 막론하고 소위 만드는 작업이 진행되는 곳 에서는 너 나 할 것 없이 UX디자인 고려라는 수식 어를 사용 하고 있는데요. 특히 IT 분야 에서 PC나 모바일 웹을 구성할 때, UX 디자인은 반드시 고려 해야 하는 핵심 요소가 되어 버렸습니다.</a></div>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="" src="images/temp/gallery2.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery2.jpg" style="background-image:url('images/temp/gallery2.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery2.jpg',sizingMethod='scale');"></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">Create Your Own Voice - Branding &amp; Books Correspondent</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="260x184" src="images/temp/gallery3.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery3.jpg" style="background-image:url('images/temp/gallery3.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery3.jpg',sizingMethod='scale');"></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="260x184" src="images/temp/gallery1.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery1.jpg" style="background-image:url('images/temp/gallery1.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery1.jpg',sizingMethod='scale');"></div>
+						<div class="feature"><span class="video"></span></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="" src="images/temp/gallery2.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery2.jpg" style="background-image:url('images/temp/gallery2.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery2.jpg',sizingMethod='scale');"></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">Create Your Own Voice - Branding &amp; Books Correspondent</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					<a href="view.html">
+						<img class="img-thumbnail" alt="260x184" src="images/temp/gallery3.jpg" data-holder-rendered="true" style="width: 100%;" />
+						<div class="bg-frame" data-src="images/temp/gallery3.jpg" style="background-image:url('images/temp/gallery3.jpg'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/temp/gallery3.jpg',sizingMethod='scale');"></div>
+					</a>
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+			<li class="item-container item-text col-md-3 col-sm-4 col-xs-12">
+				<div class="img-frame">
+					
+				</div>
+				<div class="item-detail">
+					<h3><a href="view.html">De Correspondent - 컬러나 아이콘이 독특하고 편집도 깔끔하게 정리되어진 UI</a></h3>
+					<div class="item-content"><a href="view.html">최근 몇 년 사이에 UX 디자인이라는 용어는 우리 에게 너무나 익숙한 단어가 되어 버렸습니다. 분야를 막론하고 소위 만드는 작업이 진행되는 곳 에서는 너 나 할 것 없이 UX디자인 고려라는 수식 어를 사용 하고 있는데요. 특히 IT 분야 에서 PC나 모바일 웹을 구성할 때, UX 디자인은 반드시 고려 해야 하는 핵심 요소가 되어 버렸습니다. 최근 몇 년 사이에 UX 디자인이라는 용어는 우리 에게 너무나 익숙한 단어가 되어 버렸습니다. 분야를 막론하고 소위 만드는 작업이 진행되는 곳 에서는 너 나 할 것 없이 UX디자인 고려라는 수식 어를 사용 하고 있는데요. 특히 IT 분야 에서 PC나 모바일 웹을 구성할 때, UX 디자인은 반드시 고려 해야 하는 핵심 요소가 되어 버렸습니다.</a></div>
+					<span class="user">by <a href="mypage.html">Momkai</a></span>
+					<p class="tag">
+						<a href="#">Branding</a>, 
+						<a href="#">Journalism</a>, 
+						<a href="#">Print Design</a>, 
+						<a href="#">Interaction</a>, 
+						<a href="#">Effect</a>
+					</p>
+					<div class="counter">
+						<span class="view"><span class="glyphicon glyphicon-eye-open"></span> 260</span>
+						<span class="like"><span class="glyphicon glyphicon-heart-empty"></span> 98</span>
+						<span class="comment"><span class="glyphicon glyphicon-comment"></span> 98</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<!-- 더보기 버튼 (로딩 포함)
+		클릭시 "item-more loading"
+		결과 출력 시, $('.item-more').hide();
+		 -->
+		<div class="item-more">
+			<button type="button" class="more btn btn-default">More</button>
+			<div class="loading btn btn-default"><span class="glyphicon glyphicon-refresh"></span> <span class="sr-only">Loading...</span></div>
+		</div>
+		<!-- 결과 없을 경우 $('.item-end').show(); -->
+		<div class="item-end">마지막 입니다.</div>
+		
+		<div class="footer">
+			<h2>Media Gallery</h2>
+			<div class="copy">
+				<em>&copy; Digital Engineering Department - CJ E&amp;M.</em> 
+				<span>All rights reserved.</span>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- Write - Modal -->
+<div class="modal fade modal-write" id="writeModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- Modal 내용 시작 -->
+			<form action="">
+				<div class="modal-header">
+					<h3 class="sr-only">글쓰기</h3>
+					<h4 class="sr-only">유형 선택</h4>
+					<ul class="write-type">
+						<li class="type-image col-md-4 col-sm-4 col-xs-4"><a href="#"><span class="sr-only">Image</span></a></li>
+						<li class="type-link col-md-4 col-sm-4 col-xs-4"><a href="#"><span class="sr-only">Link</span></a></li>
+						<li class="type-video col-md-4 col-sm-4 col-xs-4"><a href="#"><span class="sr-only">Video</span></a></li>
+					</ul>
+				</div>
+				<div class="modal-body">
+					<div class="write-title">
+						<label for="test1">제목을 써주세요. (40자 이내)</label>
+						<input type="text" id="test1" class="form-control" placeholder="" />
+					</div>
+					<!-- 에디터가 붙는 곳 "write-content" -->
+					<div class="write-content">
+						<label for="test2">내용 설명</label>
+						<textarea id="test2" class="form-control" cols="40" rows="10"></textarea>
+					</div>
+					<div class="write-tag">
+						<label for="test3">#태그 삽입</label>
+						<input type="text" id="test3" class="form-control" placeholder="" />
+					</div>
+					<div class="write-attachment-title">
+					</div>
+					<div class="write-attachment">
+						<li class="input-group">
+							<span class="input-group-addon"><input type="radio" name="test1" checked="checked" /></span>
+							<input type="file" class="form-control" />
+						</li>
+						<li class="input-group">
+							<span class="input-group-addon"><input type="radio" name="test1" /></span>
+							<input type="file" class="form-control" />
+						</li>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="write-btn" style="text-align:right;">
+						<button type="button"><span class="glyphicon glyphicon-ok" style="font-size:32px"></span> <span class="sr-only">확인</span></button>
+						<button type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="font-size:32px"></span> <span class="sr-only">닫기</span></button>
+					</div>
+				</div>
+			</form>
+			<!-- Modal 내용 끝 -->
+		</div>
+	</div>
+</div>
+
+<!-- Modals
+<div class="modal fade" id="loginModal" tabindex="-1" data-role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>로그인</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="loginId">아이디</label>
+					<input type="text" class="form-control" id="loginID" placeholder="Facebook 아이디" />
+				</div>
+				<div class="form-group">
+					<label for="loginPW">비밀번호</label>
+					<input type="password" class="form-control" id="loginPW" placeholder="" />
+				</div>
+				<p>
+					<a href="https://www.facebook.com/login/identify?ctx=recover" target="_blank">Facebook 비밀번호를 잊으셨나요?</a>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">로그인</button>				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="signinModal" tabindex="-1" data-role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>회원가입</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="signinID">아이디</label>
+					<input type="text" class="form-control" id="signinID" placeholder="CJ ONE ID" />
+				</div>
+				<div class="form-group">
+					<label for="signinName">이름</label>
+					<input type="text" class="form-control" id="signinName" placeholder="Name" />
+				</div>
+				<div class="form-group">
+					<button type="button" class="btn btn-default">CJ ONE 회원확인</button>
+					<span>확인되었습니다.</span>
+				</div>
+				<div class="form-group">
+					<label for="signinPW">비밀번호</label>
+					<input type="password" class="form-control" id="signinPW" placeholder="" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">가입하기</button>				
+			</div>
+		</div>
+	</div>
+</div -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/gallery.js"></script>
+<script type="text/javascript">
+	$('.dropdown-menu').click(function(e) {
+		e.stopPropagation();
+	});
+</script>
+</body>
+</html>

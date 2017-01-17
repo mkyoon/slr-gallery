@@ -1,0 +1,1592 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>KakaoPay</title>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js"></script>
+	<script>
+	
+		$(document).ready(function(){
+			$('.btn_play').click(function(){   //유투브 동영상 play
+				$('.intro_type2').addClass('video_on');	
+				$('#promo_movie').attr('src','http://videofarm.daum.net/controller/video/viewer/Video.html?vid=v7fbat4t5J5YzqzTqn4DjTT&play_loc=undefined&alert=true');
+			});
+
+			$('#popup_play_close').click(function(){  //유투브 동영상 팝업 close
+				$('.video_on').removeClass('video_on');	         
+				$('#promo_movie').attr('src','');
+			});
+
+			$('#popup_intro_close').click(function(){   //팝업
+				$('#popup_intro_layer').hide();	
+				$('.dimmed_layer').hide();
+			});
+
+			/*$(window).resize(function(e){
+				scene3_resize();
+			});
+
+			scene3_resize();
+
+			if(-1 < window.location.href.indexOf('movie')){
+				setScene(2);
+			}
+
+			if(-1 < window.location.href.indexOf('comp')){
+				$('#popup_intro_layer').hide();
+				$('.dimmed_layer').hide();
+				setScene(7);
+			}*/
+		});
+		/*
+
+		function scene3_resize()   //동영상 플레이 도중 화면 크기 변화에 따른 동영상 크기 조절
+		{
+			var sceneHeight =$(document).height();
+			var sceneWidth = $(document).width();
+			var absoluteWidth = sceneHeight * (16/9);
+
+			if(absoluteWidth < sceneWidth)
+			{
+				absoluteWidth = sceneWidth;
+			}
+
+			$('.bg_video').css('margin-left',(sceneWidth-absoluteWidth) + 'px');
+		}
+
+		var _nowScene = 1;
+		var _actionFlag = false;
+		var _moveTime = 500;
+		var _maxScene = 7;
+	    var _actionType = "easeInOutCubic"; //회면이동 옵션  
+
+		function setScene(num)
+		{
+			if(true == _actionFlag) return;   // 화면 이동중 동작하지 않는다
+			if(num < 1) return; 
+			if(num > 7) return;
+			if(num == _nowScene) return;
+
+			_actionFlag = true;
+
+			delay = 10;
+			if(3 == num && 2 == _nowScene) {
+				delay=500;
+			}
+
+			$(".intro_kakaopay").each(function(index){
+				$(this).delay(delay).animate({
+					top:(index - num + 1) + "00%"
+				}, _moveTime, _actionType, function(){
+						if(index - num + 1 == 0)
+						{
+							_actionFlag=false;
+
+							if(6 == num) {
+								moveHand();   // 손 움직임 감전
+							} else if(4 == num) {
+								typePhone(1);  // 번호 입력
+							} else if(7 == num) {
+								// bannerOpener();	//당분간 동작 안함
+							}
+						}
+
+					});
+			});
+
+			$(".intro_kakaopay").removeClass("off");
+			$(".intro_kakaopay").eq(_nowScene - 1).addClass("off");
+
+			var sceneClassNum = num;
+			if(1 != num) {
+				sceneClassNum = num + 1;
+			}
+
+			clearSceneClass();
+			$('#daumPromotion').delay(_moveTime).addClass("promotion_scene"+sceneClassNum);
+
+			$('.link_page').removeClass('on'); 
+			$('.link_page').eq(num-1).addClass('on'); 
+
+			_nowScene = num; 
+		}
+
+		function bannerOpener()
+		{
+			var contentSize = $('.intro_type7').prop('scrollHeight');
+			var scroll = $('.intro_type7').scrollTop();
+			var height = $('.intro_type7').height();
+
+			if (scroll + height > contentSize * 0.95){
+				if(false == $('.intro_bnr').hasClass('bnr_on'))
+				{
+					$('.intro_bnr').addClass('bnr_on');
+				}
+			}
+
+			setTimeout(function(){
+					if(7 == _nowScene) bannerOpener();
+					else $('.bnr_on').removeClass('bnr_on');
+				},200);
+		}
+
+		function clearSceneClass()
+		{
+			for(var i=0 ; i < _maxScene + 2 ; i++) {
+				$('#daumPromotion').removeClass("promotion_scene" + i);
+			}
+		}
+
+		function setMove(isUp) 
+		{
+			if(isUp) {
+				setScene(_nowScene-1);
+			} else {
+				if(1 == _nowScene && false == $('#daumPromotion').hasClass('promotion_scene2')){
+					_actionFlag = true;
+
+					clearSceneClass();
+					$('#daumPromotion').addClass("promotion_scene2");
+					setTimeout(function(){_actionFlag=false;},1000);
+				} else {
+					setScene(_nowScene+1);
+				}
+			}
+		}
+
+		function typePhone(type){
+			if(1 == type) {
+				$('#warning_phone').removeClass('reset_phone');			
+				$('#warning_phone').addClass('play_phone');			
+				setTimeout(function(){
+						if (4 != _nowScene) return;
+						typePhone(2);
+					},4000);
+			} else {
+				$('#warning_phone').removeClass('play_phone');			
+				$('#warning_phone').addClass('reset_phone');			
+				setTimeout(function(){
+					if (4 != _nowScene) return;
+					typePhone(1);
+					},1000);
+			}
+		}
+
+		function moveHand()
+		{
+			//초기 위치 set 
+			var obj = $("#zizizig");
+			obj.css("top","100%")
+				.show();
+
+			//첫 등장
+			obj.delay(500).animate({
+				top:"60%"
+			},2000, "linear", function(){});
+
+			//금고에 손이 닿음
+			obj.delay(50).animate({
+				top:"50%"
+			},400, "linear", function(){
+				$(this).removeClass("img_shock1");
+				$(this).addClass("img_shock2");
+				});
+
+			setZizizig(1,1);
+		}
+
+		function setZizizig(type,count)
+		{
+			var obj = $("#zizizig");
+			if(6 != _nowScene){ 
+				obj.removeClass("img_shock2");
+				obj.removeClass("img_shock3");
+				obj.addClass("img_shock1");
+				obj.css("top","100%");
+				return;
+			}
+
+			if(count > 10)
+			{
+				obj.removeClass("img_shock2");
+				obj.removeClass("img_shock3");
+				obj.addClass("img_shock1");
+
+				obj.delay(50).animate({
+					top:"60%"
+				},500, "easeOutCirc", function(){
+						obj.delay(500).animate({
+							top:"50%"
+						},500, "linear", function(){
+								setZizizig(1,1);
+							});
+					});
+
+				return ;
+			}
+
+			if(1 == type) {
+				obj.delay(100).queue(function(n){
+					obj.removeClass("img_shock3");
+					obj.addClass("img_shock2");
+					obj.css("margin-left","-77px");
+					setZizizig(2,count+1);
+					$(this).dequeue();
+				});
+			} else {
+				obj.delay(100).queue(function(n){
+					obj.removeClass("img_shock2");
+					obj.addClass("img_shock3");
+					obj.css("margin-left","-80px");
+					setZizizig(1,count+1);
+					$(this).dequeue();
+				});
+			}
+		}
+
+		function handle(delta) {
+			if(Math.abs(delta) < 0.9) return;
+			if(true == _actionFlag) return;
+
+			if (delta < 0){
+				setMove(false);
+		  } else {
+			  	setMove(true);	
+		  }
+		}
+
+		function wheel(event){
+				var delta = 0;
+				if (!event) // For IE.
+						event = window.event;
+				if (event.wheelDelta) { // IE/Opera.
+						delta = event.wheelDelta/120;
+						// In Opera 9, delta differs in sign as compared to IE.
+
+						if (window.opera)
+								delta = -delta;
+				} else if (event.detail) { // Mozilla case.
+						// In Mozilla, sign of delta is different than in IE.
+						// Also, delta is multiple of 3.
+
+						delta = -event.detail/3;
+				}
+				// If delta is nonzero, handle it.
+				// Basically, delta is now positive if wheel was scrolled up,
+				// and negative, if wheel was scrolled down.
+
+				if (delta)
+						handle(delta);
+		}
+
+		if (window.addEventListener)
+				// DOMMouseScroll is for mozilla.
+				window.addEventListener('DOMMouseScroll', wheel, false);
+
+		// IE/Opera.
+		window.onmousewheel = document.onmousewheel = wheel;
+*/
+	</script>
+<style type="text/css">
+	/* reset */
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button{margin:0;padding:0}
+	fieldset,img{border:0 none}
+	dl,ul,ol,menu,li {list-style:none}
+	blockquote, q {quotes:none}
+	blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+	input,select,textarea,button {vertical-align:middle}
+	input::-ms-clear {display:none}
+	button {border:0 none;background-color:transparent;cursor:pointer}
+	body {background:#fff}
+	body,th,td,input,select,textarea,button {font-size:12px;line-height:1.5;font-family:'돋움',dotum,sans-serif;color:#333} /* color값은 디자인가이드에 맞게사용 */
+	a {color:#333;text-decoration:none}
+	a:active, a:hover {text-decoration:underline}
+	a:active {background-color:transparent}
+	address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+	html,body {height:100%}
+	body {overflow:hidden}
+
+	/* global */
+	#daumIndex {overflow:hidden;position:absolute;left:-9999px;width:0;height:1px;margin:0;padding:0} /* 스킵네비게이션 */
+	.ir_pm {display:block;font-size:0px;line-height:0;text-indent:-9999px} /* 사용된 이미지내 의미있는 텍스트의 대체텍스트를 제공할때 */ /*overflow:hidden;*/
+	.ir_wa {display:block;overflow:hidden;position:relative;z-index:-1;width:100%;height:100%} /* 중요한 이미지 대체텍스트로 이미지off시에도 대체 텍스트를 보여주고자 할때 */
+	.screen_out {overflow:hidden;position:absolute;width:0;height:0;line-height:0;text-indent:-9999px} /* 대체텍스트가 아닌 접근성을 위한 숨김텍스트를 제공할때 */
+	.f_l {float:left}
+	.f_r {float:right}
+	.cl_b {clear:both;width:0;height:0;font-size:0;line-height:0}
+	.show {display:block}
+	.hide {display:none}
+	.tbl {border-collapse:collapse;border-spacing:0} /* 테이블 초기화 */
+	.clear_g {display:block;overflow:visible;width:auto;clear:both;*zoom:1}
+	.clear_g:after {display:block;visibility:hidden;height:0;font-size:0;clear:both;content:''}
+
+	#daumPromotion {overflow:hidden;position:relative;height:100%}
+	#daumHead {position:fixed;left:71px;top:55px;z-index:1000}
+	#daumContent {height:100%;min-height:600px}
+
+	/* 로고 */
+	.img_logo {display:block;overflow:hidden;width:165px;height:29px;font-size:0;line-height:0;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_logo.png) no-repeat;text-indent:-9999px}
+	.promotion_scene3 .img_logo,.promotion_scene5 .img_logo,.promotion_scene7 .img_logo {background-position:0 -30px}
+
+	/* 공통 */
+	.ico_intro {display:block;overflow:hidden;font-size:0;line-height:0;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/ico_intro.png) no-repeat;text-indent:-9999px}
+	.txt_intro {display:block;overflow:hidden;font-size:0;line-height:0;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/txt_intro.png) no-repeat;text-indent:-9999px}
+	.txt_intro2 {display:block;overflow:hidden;font-size:0;line-height:0;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/txt_intro2.png) no-repeat;text-indent:-9999px}
+	.intro_kakaopay {overflow:hidden;position:absolute;left:0;width:100%;height:100%}
+	.info_phone {position:absolute;left:50%;bottom:50%;width:240px;height:430px;margin:0 0 -221px -119px}
+	.img_phone {position:absolute;left:50%;top:50%;z-index:10;width:303px;height:594px;margin:-280px 0 0 -150px}
+	.promotion_scene0 .img_phone,.promotion_scene1 .img_phone,.promotion_scene2 .img_phone,.promotion_scene3 .img_phone {display:none}
+	.frame_phone {position:absolute;left:50%;top:50%;z-index:100;width:236px;height:426px;margin:-209px 0 0 -119px;border:2px solid #f0f0f0}
+	.tit_intro {position:absolute;left:50%;bottom:50%;margin-left:-512px;opacity:0}
+	.tit_point {position:absolute;left:50%;bottom:50%;opacity:0}
+	.desc_intro {position:absolute;left:50%;bottom:50%;margin-left:216px;opacity:0}
+	.dimmed_layer {display:none;position:absolute;z-index:9998;top:0;left:0;width:100%;height:100%;background-color:#000;opacity:0.8;filter:alpha(opacity=80)}
+
+	/* 우측 페이징 등 */
+	.intro_etc {position:fixed;right:36px;top:50%;z-index:100;margin-top:-187px;width:110px}
+	.paging_intro .link_page {display:block;overflow:hidden;width:14px;height:14px;margin:18px auto 0;border:1px solid #dfb674;border-radius:9px;font-size:0;line-height:0;background-color:#a78246;text-indent:-9999px}
+	.paging_intro .on {border:2px solid #442928;background-color:#fff}
+	.intro_etc .link_member {display:block;position:relative;width:111px;height:111px;margin-top:39px;border-radius:64px;background-color:#3a1e1e}
+	.intro_etc .link_member::after {content:"";position:absolute;left:-2px;top:-2px;width:100%;height:100%;border:2px solid rgba(255,255,255,.15);border-radius:64px}
+	.intro_etc .link_member:hover::after {content:"";position:absolute;left:-4px;top:-4px;overflow:hidden;width:100%;height:100%;z-index:10;border:4px solid #fce811;border-radius:64px}
+	.intro_etc .txt_member {position:absolute;left:35px;top:35px;width:37px;height:45px;margin-bottom:27px;background-position:-200px -90px}
+	.intro_etc .link_member:hover .ico_member {width:100%;height:100%;border-radius:50px;background-position:-410px -232px}
+
+	/* 장면1 */
+	.intro_type1 {top:0;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/bg_intro1.jpg) no-repeat 0 0;background-size:cover}
+	.intro_type1 .inner_kakaopay {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#fce811}
+	.promotion_scene3 .intro_type1 .inner_kakaopay {opacity:0}
+	.intro_type1 .tit_intro,.intro_type1_1 .tit_intro {height:132px;padding-top:75px;opacity:1}
+	.intro_kakaopay .txt_best {position:absolute;top:0;left:1px;width:111px;height:60px;background-position:0 0;opacity:0}
+	.promotion_scene3 .intro_type1 .txt_best {opacity:1}
+	.promotion_scene3 .intro_type1 .txt_fast {left:124px}
+	.intro_kakaopay .txt_fast {position:absolute;top:0;left:1px;width:156px;height:59px;background-position:-120px 0}
+	.intro_kakaopay .txt_pay {display:block;position:static;width:287px;height:133px;background-position:0 -70px}
+	.intro_type1 .info_phone {width:303px;height:594px;margin:0 0 -315px -136px}
+	.intro_type1 .img_phone {display:block;left:0;top:0;margin:0 0 0 -13px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone1.png) no-repeat 0 0}
+	.intro_type1 .img_phone .ico_neo {display:block;width:153px;height:213px;margin:130px 0 0 79px;background-position:-390px 0}
+	.intro_kakaopay .btn_pay {position:absolute;left:50%;top:411px;z-index:100;width:198px;height:71px;margin-left:-113px;background-position:0 0}
+	.promotion_scene3 .btn_pay {display:none}
+	.btn_pay .ico_intro {position:absolute}
+	.btn_pay .ico_arr {right:22px;top:24px;width:9px;height:16px;background-position:-200px 0}
+	.btn_pay .ico_effect {left:0;top:0;width:142px;height:63px;background-position:-220px 0}
+	.btn_pay:active {background-position:0 -80px}
+	.btn_pay:active .ico_arr {background:none}
+	.btn_pay:active .ico_effect {background:none}
+	.intro_type1 .desc_intro,.intro_type1_1 .desc_intro {bottom:50%;width:373px;height:170px;margin-bottom:-37px;background-position:-290px 0;opacity:1}
+	.intro_type1 .img_figure {display:none;position:absolute;left:50%;bottom:50%;width:1196px;height:1152px;margin:0 0 -959px -519px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_figure.png) no-repeat 0 0}
+	.promotion_scene2 .intro_type1 .img_figure,.promotion_scene3 .intro_type1 .img_figure {display:block}
+
+	/* 장면2 */
+	.intro_type2 {top:100%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/bg_intro2.jpg) no-repeat 0 0;background-size:cover}
+	.video_play {width:100%;height:100%}
+	.intro_type2 .dimmed_layer {background-color:#1b1210;opacity:.6}
+	.video_on .dimmed_layer {display:block}
+	.intro_type2 .info_phone {z-index:9999;opacity:0}
+	.intro_type2 .video_phone {overflow:hidden;position:absolute;left:50%;top:50%;width:426px;height:236px;margin:-215px 0 0 -215px;border:2px solid #fce811;-webkit-transform-origin:50% 50%;-moz-transform-origin:50% 50%;-o-transform-origin:50% 50%;-ms-transform-origin:50% 50%}
+	.intro_type2 .btn_play {position:absolute;left:50%;top:50%;width:58px;height:65px;margin:-33px 0 0 -29px;background-position:-250px -230px}
+	.intro_type2 .thumb_video {position:absolute;top:50%;left:50%;width:1020px;height:572px;margin:-286px 0 0 -510px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/thumb_video_wide.jpg) no-repeat 50% 50%}
+	.intro_type2 .thumb_video::after {content:"";position:absolute;left:0;top:0;width:100%;height:100%;background-color:#000;opacity:.4}
+	.video_on .thumb_video::after {display:none}
+	.video_on .video_phone {top:50%;width:426px;height:236px;margin-left:-214px}
+	.video_on .btn_play {display:none}
+	.intro_type2 .video_phone:hover .btn_play {background-position:-310px -230px}
+	.intro_type2 .btn_close {display:none;position:absolute;left:654px;top:-71px;width:30px;height:30px;background-position:0 -280px}
+	.video_on .btn_close {display:block}
+	.intro_type2 .desc_intro {width:471px;height:180px;margin:0 0 -311px -508px;background-position:0 -210px}
+	.off.intro_type2 .desc_intro {opacity:1}
+
+	/* 장면3 */
+	.promotion_scene4 .img_phone {top:200%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	.intro_type3 {top:200%;background-color:#fce811}
+	.intro_type3 .tit_intro {bottom:50%;width:218px;height:207px;margin-bottom:-3px;background-position:0 -400px}
+	.intro_type3 .tit_point {width:110px;height:60px;margin:0 0 -3px -401px;background-position:-480px -180px}
+	.intro_type3 .desc_intro {bottom:-100%;width:349px;height:200px;margin-bottom:-69px;background-position:-220px -400px}
+	.intro_type3 .info_phone {margin-top:-280px}
+	.intro_type3 .info_phone .ico_intro {position:absolute}
+	.intro_type3 .info_phone .ico_talk1 {left:57px;top:130px;width:119px;height:110px;background-position:0-160px}
+	.promotion_scene5 .info_phone .ico_talk1 {opacity:0}
+	.intro_type3 .info_phone .ico_talk2 {left:57px;top:149px;width:124px;height:62px;background-position:-120px -160px;opacity:0}
+	.promotion_scene5 .info_phone .ico_talk2 {opacity:1}
+	.intro_type3 .info_phone .txt_talk {left:57px;top:338px;width:124px;height:29px;background-position:-120px -240px}
+	.promotion_scene5 .info_phone .txt_talk {bottom:268px;opacity:1}
+	.off.intro_type3 .tit_intro {opacity:1}
+	.off.intro_type3 .desc_intro {opacity:1}
+
+	/* 장면4 */
+	.promotion_scene5 .img_phone {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	.intro_type4 {top:300%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/bg_intro4.jpg) no-repeat 0 0;background-size:cover}
+	.intro_type4 .tit_intro {width:264px;height:133px;margin-bottom:74px;background-position:0 -610px}
+	.intro_type4 .tit_point {width:264px;height:62px;margin:0 0 3px -512px;background-position:0 -750px}
+	.intro_type4 .desc_intro {width:312px;height:201px;margin-bottom:-66px;background-position:-270px -610px}
+	.intro_type4 .info_phone {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_inside1.png) no-repeat 0 0}
+	.intro_type4 .ico_pw {float:left;width:12px;height:12px;margin:115px 0 0 16px;border-radius:6px;background-color:#2b2e34;opacity:0}
+	.intro_type4 .reset_phone .ico_pw {opacity:1}
+	.intro_type4 .ico_pw1 {margin-left:42px}
+	.intro_type4 .img_siren {position:absolute;left:0;top:2px;width:236px;height:100px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_siren.png) no-repeat 0 0}
+	.intro_type4 .img_click {position:absolute;width:70px;height:62px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_click3.png) no-repeat}
+	.intro_type4 .img_num3 {left:157px;top:159px}
+	.intro_type4 .img_num4 {left:13px;top:223px;background-image:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_click4.png)}
+	.intro_type4 .img_num8 {left:85px;top:287px;background-image:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_click8.png)}
+	.intro_type4 .img_num2 {left:85px;top:159px;background-image:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_click2.png)}
+	.intro_type4 .img_num9 {left:157px;top:287px;background-image:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_click9.png)}
+	.intro_type4 .img_num0 {left:85px;top:351px;background-image:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_click0.png)}
+	.off.intro_type4 .tit_intro {opacity:1}
+
+	/* 장면5 */
+	.promotion_scene6 .img_phone {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone4.png) no-repeat 0 0}
+	.promotion_scene6 .info_phone {z-index:inherit}
+	.intro_type5 {top:400%;background-color:#e7e6e1}
+	.intro_type5 .tit_intro {z-index:1;width:264px;height:207px;margin-bottom:1px;background-position:0 0}
+	.intro_type5 .tit_point {width:264px;height:61px;margin:0 0 73px -513px;background-position:-270px -720px}
+	.intro_type5 .desc_intro {width:356px;height:259px;margin-bottom:-125px;background-position:-270px 0}
+	.intro_type5 .info_phone {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_inside2.png) no-repeat 0 430px}
+	.intro_type5 .img_card {position:absolute;left:-130px;top:0;z-index:100;width:500px;height:318px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_card.png) no-repeat 0 0;opacity:0;-webkit-transform:scale(0.44,0.44);-moz-transform:scale(0.44,0.44);-o-transform:scale(0.44,0.44);-ms-transform:scale(0.44,0.44)}
+	.intro_type5 .img_card2 {margin-top:39px;background-position:0 -320px}
+	.intro_type5 .img_card3 {margin-top:78px;background-position:0 -640px}
+	.intro_type5 .img_card4 {margin-top:116px;background-position:-510px 0}
+	.intro_type5 .img_card5 {margin-top:155px;background-position:-510px -320px}
+	.intro_type5 .img_card6 {margin-top:194px;background-position:-510px -640px}
+	.intro_type5 .txt_max {position:absolute;left:80px;top:385px;width:80px;height:19px;background-position:-200px -70px;opacity:0}
+	.off.intro_type5 .tit_intro {opacity:1}
+
+	/* 장면6 */
+	.promotion_scene7 .img_phone {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone5.png) no-repeat 0 0}
+	.promotion_scene7 .intro_type5 .img_card {opacity:1;-webkit-transform:translateY(-68px) scale(0.44,0.44);-moz-transform:translateY(-68px) scale(0.44,0.44);-o-transform:translateY(-68px) scale(0.44,0.44);-ms-transform:translateY(-68px) scale(0.44,0.44)}
+	.promotion_scene7 .intro_type5 .info_phone {position:fixed;z-index:1;background-position:0 0}
+	.intro_type6 {top:500%;background-color:#282b31}
+	.intro_type6 .tit_intro {width:274px;height:134px;margin-bottom:74px;background-position:0 -260px}
+	.intro_type6 .tit_point {width:216px;height:60px;margin:0 0 -3px -512px;background-position:0 -410px}
+	.intro_type6 .desc_intro {z-index:1;width:361px;height:259px;margin-bottom:-125px;background-position:-280px -260px}
+	.intro_type6 .beam_intro {position:absolute;left:0;width:0;height:1px;-webkit-transform-origin:0 0;-moz-transform-origin:0 0;-o-transform-origin:0 0;-ms-transform-origin:0 0}
+	.intro_type6 .beam_bg1 {left:15%;width:200%;background-color:rgba(249,217,0,.15);opacity:0;-webkit-transform:rotate(83deg);-moz-transform:rotate(83deg);-o-transform:rotate(83deg);-ms-transform:rotate(83deg)}
+	.intro_type6 .beam_bg2 {left:74%;width:200%;background-color:rgba(249,217,0,.2);opacity:0;-webkit-transform:rotate(120deg);-moz-transform:rotate(120deg);-o-transform:rotate(120deg);-ms-transform:rotate(120deg)}
+	.intro_type6 .beam_play1 {top:14%;background-color:rgba(249,217,0,.6);-webkit-transform:skew(0, 7deg);-moz-transform:skew(0, 7deg);-o-transform:skew(0, 7deg);-ms-transform:skew(0, 7deg)}
+	.intro_type6 .beam_play2 {top:48%;background-color:rgba(249,217,0,.4);-webkit-transform:skew(0, 22deg);-moz-transform:skew(0, 22deg);-o-transform:skew(0, 22deg);-ms-transform:skew(0, 22deg)}
+	.intro_type6 .beam_play3 {left:-5%;bottom:50%;z-index:100;width:110%;margin-bottom:-135px;background-color:rgba(249,217,0,0);-webkit-transform:rotate(-20deg);-moz-transform:rotate(-20deg);-o-transform:rotate(-20deg);-ms-transform:rotate(-20deg);-webkit-transform-origin:50% 50%;-moz-transform-origin:50% 50%;-o-transform-origin:50% 50%;-ms-transform-origin:50% 50%}
+	.intro_type6 .img_shock {overflow:visible;position:absolute;left:50%;top:50%;z-index:100;width:250px;height:668px;margin:133px 0 0 -77px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_shock.png) no-repeat}
+	.intro_type6 .img_shock1 {background-position:0 0}
+	.intro_type6 .img_shock2 {background-position:-250px 0}
+	.intro_type6 .img_shock3 {background-position:-500px 0}
+	.intro_type6 .info_phone {z-index:10;width:236px;height:426px;margin:0 0 -218px -118px;opacity:0;-webkit-perspective:700px;-moz-perspective:700px;-o-perspective:700px;-ms-perspective:700px;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;-o-transform-style:preserve-3d;-ms-transform-style:preserve-3d}
+	.intro_type6 .img_door {position:absolute;left:0;top:0;width:236px;height:426px;-webkit-transform-origin:100% 100%;-moz-transform-origin:100% 100%;-o-transform-origin:100% 100%;-ms-transform-origin:100% 100%;-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);-o-transform:rotateY(180deg);-ms-transform:rotateY(180deg)}
+	.intro_type6 .img_front {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_door.png) no-repeat 0 0;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-o-backface-visibility:hidden;-ms-backface-visibility:hidden}
+	.intro_type6 .img_back {display:block;background-color:#626874}
+	.intro_type6 .img_front::before {content:"";display:block;overflow:hidden;width:40px;height:20px;margin:199px 0 0 11px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_light.png) no-repeat 0 0}
+	.intro_type6 .img_front::after {content:"";overflow:hidden;position:absolute;width:130px;height:138px;left:57px;top:36px;background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/ico_intro.png) no-repeat -250px -90px}
+
+	/* 배너 & 푸터 */
+	.intro_type7 {overflow-y:scroll;top:600%;z-index:100;background-color:#fff}
+	.intro_type7 .tit_member {width:512px;height:134px;margin:156px auto 0;background-position:0 -520px}
+	.intro_type7 .img_member {display:block;margin:74px auto 0}
+	.intro_type7 .desc_member {width:650px;height:50px;margin:38px auto 0;background-position:0 -660px}
+	.intro_type7 .intro_bnr {overflow:hidden;height:190px;background-color:#bfd4f3;text-align:center;-webkit-transform:perspective(500px) rotateX(90deg);-moz-transform:perspective(500px) rotateX(90deg);-o-transform:perspective(500px) rotateX(90deg);-ms-transform:perspective(500px) rotateX(90deg);-webkit-transform-origin:bottom;-moz-transform-origin:bottom;-o-transform-origin:bottom;-ms-transform-origin:bottom}
+	.intro_type7 .intro_company {height:135px;border-top:1px solid #e8e5e5}
+	.intro_type7 .inner_company {width:1024px;margin:auto}
+	.intro_type7 .tit_company {float:right;width:260px;height:20px;margin-top:68px;background-position:0 -720px}
+	.intro_type7 .desc_company {float:left;width:690px;height:40px;margin-top:45px;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;color:#a69c9b}
+	.intro_type7 .info_copyright {margin-top:3px;font-size:14px}
+	.intro_type7 .link_daumkakao {color:#a69c9b}
+
+	/* 팝업 */
+	.kakaopay_layer {display:none;position:absolute;left:50%;top:50%;z-index:9999;margin:-300px 0 0 -400px}
+	.inner_kakaopay_layer {width:800px;height:600px;background-color:#fff}
+	.kakaopay_layer .layer_foot {position:absolute;right:-49px;top:0;width:30px;height:30px}
+	.kakaopay_layer .btn_close {display:block;width:30px;height:30px;background-position:0 -280px}
+
+	/* 애니메이션 */
+	.desc_intro {-webkit-transition-timing-function:cubic-bezier(.93,.35,.08,.69);-moz-transition-timing-function:cubic-bezier(.93,.35,.08,.69);-o-transition-timing-function:cubic-bezier(.93,.35,.08,.69);-ms-transition-timing-function:cubic-bezier(.93,.35,.08,.69)}
+	.tit_intro {-webkit-transition-timing-function:cubic-bezier(.65,.47,.18,.95);-moz-transition-timing-function:cubic-bezier(.65,.47,.18,.95);-o-transition-timing-function:cubic-bezier(.65,.47,.18,.95);-ms-transition-timing-function:cubic-bezier(.65,.47,.18,.95)}
+
+	/* 페이징 */
+	.intro_etc .loading_member .txt_member {-webkit-animation:txtmember ease-out .1s forwards;-moz-animation:txtmember ease-out .1s forwards;-o-animation:txtmember ease-out .1s forwards;-ms-animation:txtmember ease-out .1s forwards}
+	.intro_etc .link_member:hover .txt_member {-webkit-animation:txtmember2 ease-out .1s forwards;-moz-animation:txtmember2 ease-out .1s forwards;-o-animation:txtmember2 ease-out .1s forwards;-ms-animation:txtmember2 ease-out .1s forwards}
+	.intro_etc .link_member:hover .ico_member {-webkit-animation:chmember .4s linear infinite,ropacityef linear .3s forwards;-moz-animation:chmember .4s linear infinite,ropacityef linear .3s forwards;-o-animation:chmember .4s linear infinite,ropacityef linear .3s forwards;-ms-animation:chmember .4s linear infinite,ropacityef linear .3s forwards}
+
+	/* 장면1 */
+	.promotion_scene0 .btn_pay .ico_arr,.promotion_scene1 .btn_pay .ico_arr {-webkit-animation:payarr linear 2s infinite 1s;-moz-animation:payarr linear 2s infinite 1s;-o-animation:payarr linear 2s infinite 1s;-ms-animation:payarr linear 2s infinite 1s}
+	.promotion_scene0 .btn_pay .ico_effect,.promotion_scene1 .btn_pay .ico_effect {-webkit-animation:payeffect linear 2s infinite;-moz-animation:payeffect linear 2s infinite;-o-animation:payeffect linear 2s infinite;-ms-animation:payeffect linear 2s infinite}
+	.promotion_scene1 .frame_phone {-webkit-animation:rframetype2 linear .5s forwards,rtframe linear .5s forwards;-moz-animation:rframetype2 linear .5s forwards,rtframe linear .5s forwards;-o-animation:rframetype2 linear .5s forwards,rtframe linear .5s forwards;-ms-animation:rframetype2 linear .5s forwards,rtframe linear .5s forwards}
+
+	/* 장면1_1 */
+	.promotion_scene2 .intro_type1 .ico_neo {-webkit-animation:opacityef ease-out .2s forwards;-moz-animation:opacityef ease-out .2s forwards;-o-animation:opacityef ease-out .2s forwards;-ms-animation:opacityef ease-out .2s forwards}
+	.promotion_scene2 .intro_type1 {-webkit-animation:mvbg ease-out .5s forwards;-moz-animation:mvbg ease-out .5s forwards;-o-animation:mvbg ease-out .5s forwards;-ms-animation:mvbg ease-out .5s forwards}
+	.promotion_scene2 .intro_type1 .inner_kakaopay {-webkit-animation:mvbg2 linear .4s forwards;-moz-animation:mvbg2 linear .4s forwards;-o-animation:mvbg2 linear .4s forwards;-ms-animation:mvbg2 linear .4s forwards}
+	.promotion_scene2 .intro_type1 .img_phone,.promotion_scene2 .intro_type1 .btn_pay {-webkit-animation:mvphone1 cubic-bezier(.65,.47,.18,.95) 1s forwards;-moz-animation:mvphone1 cubic-bezier(.65,.47,.18,.95) 1s forwards;-o-animation:mvphone1 cubic-bezier(.65,.47,.18,.95) 1s forwards;-ms-animation:mvphone1 cubic-bezier(.65,.47,.18,.95) 1s forwards}
+	.promotion_scene2 .intro_type1 .txt_best {-webkit-animation:ropacityef linear .7s forwards 1.1s;-moz-animation:ropacityef linear .7s forwards 1.1s;-o-animation:ropacityef linear .7s forwards 1.1s;-ms-animation:ropacityef linear .7s forwards 1.1s}
+	.promotion_scene2 .intro_type1 .txt_fast {-webkit-animation:fast ease-out .4s forwards;-moz-animation:fast ease-out .4s forwards;-o-animation:fast ease-out .4s forwards;-ms-animation:fast ease-out .4s forwards}
+	.promotion_scene2 .img_figure {-webkit-animation:mvBottom3 ease-out .5s forwards;-moz-animation:mvBottom3 ease-out .5s forwards;-o-animation:mvBottom3 ease-out .5s forwards;-ms-animation:mvBottom3 ease-out .5s forwards}
+	.promotion_scene2 .frame_phone {-webkit-animation:frametype1 linear 1s forwards;-moz-animation:frametype1 linear 1s forwards;-o-animation:frametype1 linear 1s forwards;-ms-animation:frametype1 linear 1s forwards}
+
+	/* 장면2 */
+	.off.intro_type1 .img_phone {display:none}
+	.off.intro_type1 .tit_intro {-webkit-animation:rmvtop .6s forwards 1s;-moz-animation:rmvtop .6s forwards 1s;-o-animation:rmvtop .6s forwards 1s;-ms-animation:rmvtop .6s forwards 1s}
+	.off.intro_type1 .txt_best {-webkit-animation:mvfast ease-out 1s forwards;-moz-animation:mvfast ease-out 1s forwards;-o-animation:mvfast ease-out 1s forwards;-ms-animation:mvfast ease-out 1s forwards}
+	.off.intro_type1 .txt_fast {-webkit-animation:mvfast cubic-bezier(.65,.47,.18,.95) .4s forwards;-moz-animation:mvfast cubic-bezier(.65,.47,.18,.95) .4s forwards;-o-animation:mvfast cubic-bezier(.65,.47,.18,.95) .4s forwards;-ms-animation:mvfast cubic-bezier(.65,.47,.18,.95) .4s forwards}
+	.off.intro_type1 .desc_intro {-webkit-animation:rmvtop .4s forwards;-moz-animation:rmvtop .4s forwards;-o-animation:rmvtop .4s forwards;-ms-animation:rmvtop .4s forwards}
+	.off.intro_type1 .img_figure {-webkit-animation:rmvBottom3 ease-out .3s forwards;-moz-animation:rmvBottom3 ease-out .3s forwards;-o-animation:rmvBottom3 ease-out .3s forwards;-ms-animation:rmvBottom3 ease-out .3s forwards}
+	.promotion_scene3 .intro_type2 .desc_intro {-webkit-animation:mvBottom2 .6s forwards .8s;-moz-animation:mvBottom2 .6s forwards .8s;-o-animation:mvBottom2 .6s forwards .8s;-ms-animation:mvBottom2 .6s forwards .8s}
+	.promotion_scene3 .info_phone {-webkit-animation:ropacityef linear .3s forwards 1.2s;-moz-animation:ropacityef linear .3s forwards 1.2s;-o-animation:ropacityef linear .3s forwards 1.2s;-ms-animation:ropacityef linear .3s forwards 1.2s}
+	.promotion_scene3 .frame_phone {-webkit-animation:frametype2 linear 1s forwards,tframe linear 1s forwards;-moz-animation:frametype2 linear 1s forwards,tframe linear 1s forwards;-o-animation:frametype2 linear 1s forwards,tframe linear 1s forwards;-ms-animation:frametype2 linear 1s forwards,tframe linear 1s forwards}
+	.promotion_scene3 .video_on .video_phone {-webkit-animation:tframe linear 1s forwards,video cubic-bezier(.65,.47,.36,.81) .2s forwards;-moz-animation:tframe linear 1s forwards,video cubic-bezier(.65,.47,.36,.81) .2s forwards;-o-animation:tframe linear 1s forwards,video cubic-bezier(.65,.47,.36,.81) .2s forwards;-ms-animation:tframe linear 1s forwards,video cubic-bezier(.65,.47,.36,.81) .2s forwards}
+	.promotion_scene3 .video_on .thumb_video::after {-webkit-animation:opacityef linear .3s forwards;-moz-animation:opacityef linear .3s forwards;-o-animation:opacityef linear .3s forwards;-ms-animation:opacityef linear .3s forwards}
+
+	/* 장면3 */
+	.off.intro_type2 .desc_intro {-webkit-animation:rmvBottom2 .5s forwards;-moz-animation:rmvBottom2 .5s forwards;-o-animation:rmvBottom2 .5s forwards;-ms-animation:rmvBottom2 .5s forwards}
+	.promotion_scene4 .frame_phone {-webkit-animation:rtframe ease-out .5s forwards,frametype3 linear .5s forwards;-moz-animation:rtframe ease-out .5s forwards,frametype3 linear .5s forwards;-o-animation:rtframe ease-out .5s forwards,frametype3 linear .5s forwards;-ms-animation:rtframe ease-out .5s forwards,frametype3 linear .5s forwards}
+	.promotion_scene4 .img_phone {-webkit-animation:mvphonetype3 ease-out .5s forwards .4s;-moz-animation:mvphonetype3 ease-out .5s forwards .4s;-o-animation:mvphonetype3 ease-out .5s forwards .4s;-ms-animation:mvphonetype3 ease-out .5s forwards .4s}
+	.promotion_scene4 .intro_type3 .tit_intro {-webkit-animation:mvBottom2 .6s forwards .8s;-moz-animation:mvBottom2 .6s forwards .8s;-o-animation:mvBottom2 .6s forwards .8s;-ms-animation:mvBottom2 .6s forwards .8s}
+	.promotion_scene4 .intro_type3 .tit_point {-webkit-animation:type3point ease-out .5s forwards 1.7s;-moz-animation:type3point ease-out .5s forwards 1.7s;-o-animation:type3point ease-out .5s forwards 1.7s;-ms-animation:type3point ease-out .5s forwards 1.7s}
+	.promotion_scene4 .intro_type3 .ico_talk1 {-webkit-animation:opacityef linear .5s forwards 1.5s;-moz-animation:opacityef linear .5s forwards 1.5s;-o-animation:opacityef linear .5s forwards 1.5s;-ms-animation:opacityef linear .5s forwards 1.5s}
+	.promotion_scene4 .intro_type3 .ico_talk2 {-webkit-animation:ropacityef ease-out .4s forwards 1.7s;-moz-animation:ropacityef ease-out .4s forwards 1.7s;-o-animation:ropacityef ease-out .4s forwards 1.7s;-ms-animation:ropacityef ease-out .4s forwards 1.7s}
+	.promotion_scene4 .intro_type3 .txt_talk {-webkit-animation:mvtalk ease-out .3s forwards 1.7s;-moz-animation:mvtalk ease-out .3s forwards 1.7s;-o-animation:mvtalk ease-out .3s forwards 1.7s;-ms-animation:mvtalk ease-out .3s forwards 1.7s}
+	.promotion_scene4 .intro_type3 .desc_intro {-webkit-animation:mvBottom2 .5s forwards 1s;-moz-animation:mvBottom2 .5s forwards 1s;-o-animation:mvBottom2 .5s forwards 1s;-ms-animation:mvBottom2 .5s forwards 1s}
+
+	/* 장면4 */
+	.off.intro_type3 .tit_intro {-webkit-animation:rmvBottom2 .4s forwards;-moz-animation:rmvBottom2 .4s forwards;-o-animation:rmvBottom2 .4s forwards;-ms-animation:rmvBottom2 .4s forwards}
+	.off.intro_type3 .tit_point {-webkit-animation:rmvBottom2 ease-out 1s forwards;-moz-animation:rmvBottom2 ease-out 1s forwards;-o-animation:rmvBottom2 ease-out 1s forwards;-ms-animation:rmvBottom2 ease-out 1s forwards;opacity:1}
+	.off.intro_type3 .ico_talk1 {opacity:0}
+	.off.intro_type3 .ico_talk2 {-webkit-animation:rmvBottom2 ease-out .5s forwards;-moz-animation:rmvBottom2 ease-out .5s forwards;-o-animation:rmvBottom2 ease-out .5s forwards;-ms-animation:rmvBottom2 ease-out .5s forwards}
+	.off.intro_type3 .txt_talk {top:225px;-webkit-animation:rmvBottom2 ease-out .7s forwards .3s;-moz-animation:rmvBottom2 ease-out .7s forwards .3s;-o-animation:rmvBottom2 ease-out .7s forwards .3s;-ms-animation:rmvBottom2 ease-out .7s forwards .3s}
+	.off.intro_type3 .desc_intro {-webkit-animation:rmvBottom2 .6s forwards;-moz-animation:rmvBottom2 .6s forwards;-o-animation:rmvBottom2 .6s forwards;-ms-animation:rmvBottom2 .6s forwards}
+	.promotion_scene5 .img_phone {-webkit-animation:phonetype4 linear .5s forwards;-moz-animation:phonetype4 linear .5s forwards;-o-animation:phonetype4 linear .5s forwards;-ms-animation:phonetype4 linear .5s forwards}
+	.promotion_scene5 .frame_phone {-webkit-animation:frametype4 linear .5s forwards;-moz-animation:frametype4 linear .5s forwards;-o-animation:frametype4 linear .5s forwards;-ms-animation:frametype4 linear .5s forwards}
+	.promotion_scene5 .intro_type4 .tit_intro {-webkit-animation:mvBottom2 .5s forwards .4s;-moz-animation:mvBottom2 .5s forwards .4s;-o-animation:mvBottom2 .5s forwards .4s;-ms-animation:mvBottom2 .5s forwards .4s}
+	.promotion_scene5 .intro_type4 .tit_point {-webkit-animation:ropacityef linear .5s forwards 2s;-moz-animation:ropacityef linear .5s forwards 2s;-o-animation:ropacityef linear .5s forwards 2s;-ms-animation:ropacityef linear .5s forwards 2s}
+	.promotion_scene5 .intro_type4 .desc_intro {-webkit-animation:mvBottom2 .8s forwards .6s;-moz-animation:mvBottom2 .8s forwards .6s;-o-animation:mvBottom2 .8s forwards .6s;-ms-animation:mvBottom2 .8s forwards .6s}
+	.promotion_scene5 .play_phone .img_click {-webkit-animation:numclick .5s steps(4) backwards;-moz-animation:numclick .5s steps(4) backwards;-o-animation:numclick .5s steps(4) backwards;-ms-animation:numclick .5s steps(4) backwards}
+	.promotion_scene5 .play_phone .ico_pw {-webkit-animation:ropacityef linear 0.05s forwards;-moz-animation:ropacityef linear 0.05s forwards;-o-animation:ropacityef linear 0.05s forwards;-ms-animation:ropacityef linear 0.05s forwards}
+	.promotion_scene5 .play_phone .img_num3 {-webkit-animation-delay:.6s;-moz-animation-delay:.6s;-o-animation-delay:.6s;-ms-animation-delay:.6s}
+	.promotion_scene5 .play_phone .img_num4 {-webkit-animation-delay:1.2s;-moz-animation-delay:1.2s;-o-animation-delay:1.2s;-ms-animation-delay:1.2s}
+	.promotion_scene5 .play_phone .img_num8 {-webkit-animation-delay:1.8s;-moz-animation-delay:1.8s;-o-animation-delay:1.8s;-ms-animation-delay:1.8s}
+	.promotion_scene5 .play_phone .img_num2 {-webkit-animation-delay:2.4s;-moz-animation-delay:2.4s;-o-animation-delay:2.4s;-ms-animation-delay:2.4s}
+	.promotion_scene5 .play_phone .img_num9 {-webkit-animation-delay:3s;-moz-animation-delay:3s;-o-animation-delay:3s;-ms-animation-delay:3s}
+	.promotion_scene5 .play_phone .img_num0 {-webkit-animation-delay:3.6s;-moz-animation-delay:3.6s;-o-animation-delay:3.6s;-ms-animation-delay:3.6s}
+	.promotion_scene5 .play_phone .ico_pw1 {-webkit-animation-delay:.7s;-moz-animation-delay:.7s;-o-animation-delay:.7s;-ms-animation-delay:.7s}
+	.promotion_scene5 .play_phone .ico_pw2 {-webkit-animation-delay:1.3s;-moz-animation-delay:1.3s;-o-animation-delay:1.3s;-ms-animation-delay:1.3s}
+	.promotion_scene5 .play_phone .ico_pw3 {-webkit-animation-delay:1.9s;-moz-animation-delay:1.9s;-o-animation-delay:1.9s;-ms-animation-delay:1.9s}
+	.promotion_scene5 .play_phone .ico_pw4 {-webkit-animation-delay:2.5s;-moz-animation-delay:2.5s;-o-animation-delay:2.5s;-ms-animation-delay:2.5s}
+	.promotion_scene5 .play_phone .ico_pw5 {-webkit-animation-delay:3.1s;-moz-animation-delay:3.1s;-o-animation-delay:3.1s;-ms-animation-delay:3.1s}
+	.promotion_scene5 .play_phone .ico_pw6 {-webkit-animation-delay:3.7s;-moz-animation-delay:3.7s;-o-animation-delay:3.7s;-ms-animation-delay:3.7s}
+	.promotion_scene5 .reset_phone .img_click {-webkit-animation:numreset .5s steps(1) forwards;-moz-animation:numreset .5s steps(1) forwards;-o-animation:numreset .5s steps(1) forwards;-ms-animation:numreset .5s steps(1) forwards}
+	.promotion_scene5 .reset_phone .ico_pw {-webkit-animation:opacityef linear 0.05s forwards;-moz-animation:opacityef linear 0.05s forwards;-o-animation:opacityef linear 0.05s forwards;-ms-animation:opacityef linear 0.05s forwards}
+	.promotion_scene5 .reset_phone .img_num2 {-webkit-animation-delay:.6s;-moz-animation-delay:.6s;-o-animation-delay:.6s;-ms-animation-delay:.6s}
+	.promotion_scene5 .reset_phone .img_num3 {-webkit-animation-delay:.5s;-moz-animation-delay:.5s;-o-animation-delay:.5s;-ms-animation-delay:.5s}
+	.promotion_scene5 .reset_phone .img_num4 {-webkit-animation-delay:.4s;-moz-animation-delay:.4s;-o-animation-delay:.4s;-ms-animation-delay:.4s}
+	.promotion_scene5 .reset_phone .img_num8 {-webkit-animation-delay:.3s;-moz-animation-delay:.3s;-o-animation-delay:.3s;-ms-animation-delay:.3s}
+	.promotion_scene5 .reset_phone .img_num9 {-webkit-animation-delay:.2s;-moz-animation-delay:.2s;-o-animation-delay:.2s;-ms-animation-delay:.2s}
+	.promotion_scene5 .reset_phone .img_num0 {-webkit-animation-delay:.1s;-moz-animation-delay:.1s;-o-animation-delay:.1s;-ms-animation-delay:.1s}
+	.promotion_scene5 .reset_phone .ico_pw1 {-webkit-animation-delay:1s;-moz-animation-delay:1s;-o-animation-delay:1s;-ms-animation-delay:1s}
+	.promotion_scene5 .reset_phone .ico_pw2 {-webkit-animation-delay:.9s;-moz-animation-delay:.9s;-o-animation-delay:.9s;-ms-animation-delay:.9s}
+	.promotion_scene5 .reset_phone .ico_pw3 {-webkit-animation-delay:.8s;-moz-animation-delay:.8s;-o-animation-delay:.8s;-ms-animation-delay:.8s}
+	.promotion_scene5 .reset_phone .ico_pw4 {-webkit-animation-delay:.7s;-moz-animation-delay:.7s;-o-animation-delay:.7s;-ms-animation-delay:.7s}
+	.promotion_scene5 .reset_phone .ico_pw5 {-webkit-animation-delay:.6s;-moz-animation-delay:.6s;-o-animation-delay:.6s;-ms-animation-delay:.6s}
+	.promotion_scene5 .reset_phone .ico_pw6 {-webkit-animation-delay:.5s;-moz-animation-delay:.5s;-o-animation-delay:.5s;-ms-animation-delay:.5s}
+	.promotion_scene5 .intro_type4 .img_siren {-webkit-animation:siren 4s steps(5) infinite;-moz-animation:siren 4s steps(5) infinite;-o-animation:siren 4s steps(5) infinite;-ms-animation:siren 4s steps(5) infinite}
+
+	/* 장면5 */
+	.off.intro_type4 .tit_intro {-webkit-animation:rmvBottom2 .5s forwards;-moz-animation:rmvBottom2 .5s forwards;-o-animation:rmvBottom2 .5s forwards;-ms-animation:rmvBottom2 .5s forwards}
+	.off.intro_type4 .tit_point {opacity:1;-webkit-animation:rmvBottom2 ease-out .2s forwards;-moz-animation:rmvBottom2 ease-out .2s forwards;-o-animation:rmvBottom2 ease-out .2s forwards;-ms-animation:rmvBottom2 ease-out .2s forwards}
+	.off.intro_type4 .info_phone {-webkit-animation:rmvBottom2 ease-out .5s forwards;-moz-animation:rmvBottom2 ease-out .5s forwards;-o-animation:rmvBottom2 ease-out .5s forwards;-ms-animation:rmvBottom2 ease-out .5s forwards}
+	.off.intro_type4 .desc_intro {-webkit-animation:rmvBottom2 .8s forwards;-moz-animation:rmvBottom2 .8s forwards;-o-animation:rmvBottom2 .8s forwards;-ms-animation:rmvBottom2 .8s forwards}
+	.promotion_scene6 .img_phone {-webkit-animation:phonetype5 linear .5s forwards;-moz-animation:phonetype5 linear .5s forwards;-o-animation:phonetype5 linear .5s forwards;-ms-animation:phonetype5 linear .5s forwards}
+	.promotion_scene6 .frame_phone {-webkit-animation:frametype5 linear .5s forwards;-moz-animation:frametype5 linear .5s forwards;-o-animation:frametype5 linear .5s forwards;-ms-animation:frametype5 linear .5s forwards}
+	.promotion_scene6 .intro_type5 .tit_intro {-webkit-animation:mvBottom2 .6s forwards .4s;-moz-animation:mvBottom2 .6s forwards .4s;-o-animation:mvBottom2 .6s forwards .4s;-ms-animation:mvBottom2 .6s forwards .4s}
+	.promotion_scene6 .intro_type5 .tit_point {-webkit-animation:txtcredit ease-in .3s forwards 2.5s;-moz-animation:txtcredit ease-in .3s forwards 2.5s;-o-animation:txtcredit ease-in .3s forwards 2.5s;-ms-animation:txtcredit ease-in .3s forwards 2.5s}
+	.promotion_scene6 .intro_type5 .desc_intro {-webkit-animation:mvBottom2 .6s forwards .6s;-moz-animation:mvBottom2 .6s forwards .6s;-o-animation:mvBottom2 .6s forwards .6s;-ms-animation:mvBottom2 .6s forwards .6s}
+	.promotion_scene6 .intro_type5 .info_phone {-webkit-animation:insidecard linear .3s forwards .3s;-moz-animation:insidecard linear .3s forwards .3s;-o-animation:insidecard linear .3s forwards .3s;-ms-animation:insidecard linear .3s forwards .3s}
+	.promotion_scene6 .intro_type5 .img_card {-webkit-animation:card cubic-bezier(.65,.47,.36,.81) .7s forwards 0.5s;-moz-animation:card cubic-bezier(.65,.47,.36,.81) .7s forwards 0.5s;-o-animation:card cubic-bezier(.65,.47,.36,.81) .7s forwards 0.5s;-ms-animation:card cubic-bezier(.65,.47,.36,.81) .7s forwards 0.5s}
+	.promotion_scene6 .intro_type5 .img_card2 {-webkit-animation-delay:0.7s;-moz-animation-delay:0.7s;-o-animation-delay:0.7s;-ms-animation-delay:0.7s}
+	.promotion_scene6 .intro_type5 .img_card3 {-webkit-animation-delay:0.9s;-moz-animation-delay:0.9s;-o-animation-delay:0.9s;-ms-animation-delay:0.9s}
+	.promotion_scene6 .intro_type5 .img_card4 {-webkit-animation-delay:1.1s;-moz-animation-delay:1.1s;-o-animation-delay:1.1s;-ms-animation-delay:1.1s}
+	.promotion_scene6 .intro_type5 .img_card5 {-webkit-animation-delay:1.3s;-moz-animation-delay:1.3s;-o-animation-delay:1.3s;-ms-animation-delay:1.3s}
+	.promotion_scene6 .intro_type5 .img_card6 {-webkit-animation-delay:1.5s;-moz-animation-delay:1.5s;-o-animation-delay:1.5s;-ms-animation-delay:1.5s}
+	.promotion_scene6 .intro_type5 .txt_max {-webkit-animation:cardtxt ease-out .5s forwards 2.7s;-moz-animation:cardtxt ease-out .5s forwards 2.7s;-o-animation:cardtxt ease-out .5s forwards 2.7s;-ms-animation:cardtxt ease-out .5s forwards 2.7s}
+
+	/* 장면6 */
+	.off.intro_type5 .tit_intro {opacity:1;-webkit-animation:rmvBottom2 .5s forwards;-moz-animation:rmvBottom2 .5s forwards;-o-animation:rmvBottom2 .5s forwards;-ms-animation:rmvBottom2 .5s forwards}
+	.off.intro_type5 .tit_point {opacity:1;-webkit-animation:rmvBottom2 ease-out .5s forwards;-moz-animation:rmvBottom2 ease-out .5s forwards;-o-animation:rmvBottom2 ease-out .5s forwards;-ms-animation:rmvBottom2 ease-out .5s forwards}
+	.off.intro_type5 .desc_intro {opacity:1;-webkit-animation:rmvBottom2 .8s forwards;-moz-animation:rmvBottom2 .8s forwards;-o-animation:rmvBottom2 .8s forwards;-ms-animation:rmvBottom2 .8s forwards}
+	.off.intro_type5 .info_phone {position:fixed}
+	.promotion_scene7 .img_phone {-webkit-animation:phonetype6 linear .5s forwards;-moz-animation:phonetype6 linear .5s forwards;-o-animation:phonetype6 linear .5s forwards;-ms-animation:phonetype6 linear .5s forwards}
+	.promotion_scene7 .frame_phone {-webkit-animation:opacityef linear .5s forwards;-moz-animation:opacityef linear .5s forwards;-o-animation:opacityef linear .5s forwards;-ms-animation:opacityef linear .5s forwards}
+	.promotion_scene7 .intro_type6 .tit_intro {-webkit-animation:mvBottom2 .6s forwards .4s;-moz-animation:mvBottom2 .6s forwards .4s;-o-animation:mvBottom2 .6s forwards .4s;-ms-animation:mvBottom2 .6s forwards .4s}
+	.promotion_scene7 .intro_type6 .tit_point {-webkit-animation:ropacityef .5s forwards 4.1s;-moz-animation:ropacityef .5s forwards 4.1s;-o-animation:ropacityef .5s forwards 4.1s;-ms-animation:ropacityef .5s forwards 4.1s}
+	.promotion_scene7 .intro_type6 .info_phone {-webkit-animation:ropacityef linear .3s forwards .6s;-moz-animation:ropacityef linear .3s forwards .6s;-o-animation:ropacityef linear .3s forwards .6s;-ms-animation:ropacityef linear .3s forwards .6s}
+	.promotion_scene7 .intro_type6 .img_door {-webkit-animation:door linear .5s forwards 1.7s;-moz-animation:door linear .5s forwards 1.7s;-o-animation:door linear .5s forwards 1.7s;-ms-animation:door linear .5s forwards 1.7s}
+	.promotion_scene7 .intro_type6 .img_front::before {-webkit-animation:light .6s steps(3) backwards 3.2s;-moz-animation:light .6s steps(3) backwards 3.2s;-o-animation:light .6s steps(3) backwards 3.2s;-ms-animation:light .6s steps(3) backwards 3.2s}
+	.promotion_scene7 .intro_type6 .img_front::after {-webkit-animation:knob .7s linear backwards 2.2s;-moz-animation:knob .7s linear backwards 2.2s;-o-animation:knob .7s linear backwards 2.2s;-ms-animation:knob .7s linear backwards 2.2s}
+	.promotion_scene7 .intro_type6 .desc_intro {-webkit-animation:mvBottom2 .6s forwards .6s;-moz-animation:mvBottom2 .6s forwards .6s;-o-animation:mvBottom2 .6s forwards .6s;-ms-animation:mvBottom2 .6s forwards .6s}
+	.promotion_scene7 .beam_bg1,.promotion_scene7 .beam_bg2 {-webkit-animation:ropacityef .5s forwards .8s;-moz-animation:ropacityef .5s forwards .8s;-o-animation:ropacityef .5s forwards .8s;-ms-animation:ropacityef .5s forwards .8s}
+	.promotion_scene7 .beam_bg2 {-webkit-animation-delay:1s;-moz-animation-delay:1s;-o-animation-delay:1s;-ms-animation-delay:1s}
+	.promotion_scene7 .intro_type6 .beam_play1,.promotion_scene7 .intro_type6 .beam_play2 {-webkit-animation:beam ease-out .5s forwards .6s;-moz-animation:beam ease-out .5s forwards .6s;-o-animation:beam ease-out .5s forwards .6s;-ms-animation:beam ease-out .5s forwards .6s}
+	.promotion_scene7 .intro_type6 .beam_play2 {-webkit-animation-delay:1.2s;-moz-animation-delay:1.2s;-o-animation-delay:1.2s;-ms-animation-delay:1.2s}
+	.promotion_scene7 .intro_type6 .beam_play3 {-webkit-animation:beam2 linear 1s forwards 3.3s;-moz-animation:beam2 linear 1s forwards 3.3s;-o-animation:beam2 linear 1s forwards 3.3s;-ms-animation:beam2 linear 1s forwards 3.3s}
+
+	/* 배너 & 푸터 */
+	.off.intro_type6 .tit_intro {opacity:1;-webkit-animation:rmvBottom2 .5s forwards;-moz-animation:rmvBottom2 .5s forwards;-o-animation:rmvBottom2 .5s forwards;-ms-animation:rmvBottom2 .5s forwards}
+	.off.intro_type6 .tit_point {opacity:1;-webkit-animation:rmvBottom2 ease-out .5s forwards;-moz-animation:rmvBottom2 ease-out .5s forwards;-o-animation:rmvBottom2 ease-out .5s forwards;-ms-animation:rmvBottom2 ease-out .5s forwards;-webkit-transform:rotateY(0);-moz-transform:rotateY(0);-o-transform:rotateY(0);-ms-transform:rotateY(0)}
+	.off.intro_type6 .desc_intro {opacity:1;-webkit-animation:rmvBottom2 .8s forwards;-moz-animation:rmvBottom2 .8s forwards;-o-animation:rmvBottom2 .8s forwards;-ms-animation:rmvBottom2 .8s forwards}
+	.off.intro_type6 .info_phone {position:fixed}
+	.promotion_scene8 .img_phone {position:fixed;bottom:50%;opacity:1;background-image:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone5.png)}
+	.promotion_scene8 .intro_type1 .img_phone {display:none}
+	.promotion_scene8 .frame_phone {display:none}
+	.promotion_scene8 .intro_type6 .tit_intro {position:fixed;bottom:50%;opacity:1;-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-o-animation-play-state:paused;-ms-animation-play-state:paused}
+	.promotion_scene8 .intro_type6 .tit_point {position:fixed;bottom:50%;opacity:1;-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-o-animation-play-state:paused;-ms-animation-play-state:paused}
+	.promotion_scene8 .intro_type6 .info_phone {position:fixed;opacity:1}
+	.promotion_scene8 .intro_type6 .img_door {-webkit-transform:rotateY(0);-moz-transform:rotateY(0);-o-transform:rotateY(0);-ms-transform:rotateY(0)}
+	.promotion_scene8 .intro_type6 .desc_intro {position:fixed;bottom:50%;opacity:1;-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-o-animation-play-state:paused;-ms-animation-play-state:paused}
+	.promotion_scene8 .intro_type6 .beam_bg1,.promotion_scene8 .intro_type6 .beam_bg2 {opacity:1}
+	.promotion_scene8 .intro_type6 .beam_play1,.promotion_scene8 .intro_type6 .beam_play2 {position:fixed;width:100%}
+	.promotion_scene8 .intro_type6 .beam_play3 {position:fixed;background-color:rgba(249,217,0,1)}
+	.promotion_scene8 .intro_type6 .img_shock {position:fixed;opacity:1}
+	.promotion_scene8 .intro_type7 .bnr_on {-webkit-transform:rotateX(0deg);-moz-transform:rotateX(0deg);-o-transform:rotateX(0deg);-ms-transform:rotateX(0deg);-webkit-transition:-webkit-transform .5s;-moz-transition:-webkit-transform .5s;-o-transition:-webkit-transform .5s;-ms-transition:-webkit-transform .5s;-webkit-transition-delay:1s;-moz-transition-delay:1s;-o-transition-delay:1s;-ms-transition-delay:1s}
+
+	@-webkit-keyframes mvbg {
+	0% {background-position-y:100px}
+	100% {background-position-y:0}
+	}
+	@-moz-keyframes mvbg {
+	0% {background-position-y:100px}
+	100% {background-position-y:0}
+	}
+	@-o-keyframes mvbg {
+	0% {background-position-y:100px}
+	100% {background-position-y:0}
+	}
+	@-ms-keyframes mvbg {
+	0% {background-position-y:100px}
+	100% {background-position-y:0}
+	}
+	@-webkit-keyframes mvbg3 {
+	0% {}
+	50% {margin-top:-100px}
+	100% {margin-top:0}
+	}
+	@-moz-keyframes mvbg3 {
+	0% {}
+	50% {margin-top:-100px}
+	100% {margin-top:0}
+	}
+	@-o-keyframes mvbg3 {
+	0% {}
+	50% {margin-top:-100px}
+	100% {margin-top:0}
+	}
+	@-ms-keyframes mvbg3 {
+	0% {}
+	50% {margin-top:-100px}
+	100% {margin-top:0}
+	}
+	@-webkit-keyframes mvbg2 {
+	0% {top:0}
+	100% {top:-100%}
+	}
+	@-moz-keyframes mvbg2 {
+	0% {top:0}
+	100% {top:-100%}
+	}
+	@-o-keyframes mvbg2 {
+	0% {top:0}
+	100% {top:-100%}
+	}
+	@-ms-keyframes mvbg2 {
+	0% {top:0}
+	100% {top:-100%}
+	}
+	@-webkit-keyframes payarr {
+	0% {right:22px}
+	5% {right:30px}
+	10% {right:22px}
+	15% {right:32px}
+	20% {right:22px}
+	}
+	@-moz-keyframes payarr {
+	0% {right:22px}
+	5% {right:30px}
+	10% {right:22px}
+	15% {right:32px}
+	20% {right:22px}
+	}
+	@-o-keyframes payarr {
+	0% {right:22px}
+	5% {right:30px}
+	10% {right:22px}
+	15% {right:32px}
+	20% {right:22px}
+	}
+	@-ms-keyframes payarr {
+	0% {right:22px}
+	5% {right:30px}
+	10% {right:22px}
+	15% {right:32px}
+	20% {right:22px}
+	}
+	@-webkit-keyframes payeffect {
+	0% {left:-100%}
+	100% {left:300%}
+	}
+	@-moz-keyframes payeffect {
+	0% {left:-100%}
+	100% {left:300%}
+	}
+	@-o-keyframes payeffect {
+	0% {left:-100%}
+	100% {left:300%}
+	}
+	@-ms-keyframes payeffect {
+	0% {left:-100%}
+	100% {left:300%}
+	}
+	@-webkit-keyframes mvtop {
+	0% {-webkit-transform:translateY(-100%)}
+	100% {-webkit-transform:translateY(0)}
+	}
+	@-moz-keyframes mvtop {
+	0% {-moz-transform:translateY(-100%)}
+	100% {-moz-transform:translateY(0)}
+	}
+	@-o-keyframes mvtop {
+	0% {-o-transform:translateY(-100%)}
+	100% {-o-transform:translateY(0)}
+	}
+	@-ms-keyframes mvtop {
+	0% {-ms-transform:translateY(-100%)}
+	100% {-ms-transform:translateY(0)}
+	}
+	@-webkit-keyframes rmvtop {
+	0% {}
+	100% {-webkit-transform:translateY(-200%)}
+	}
+	@-moz-keyframes rmvtop {
+	0% {}
+	100% {-moz-transform:translateY(-200%)}
+	}
+	@-o-keyframes rmvtop {
+	0% {}
+	100% {-o-transform:translateY(-200%)}
+	}
+	@-ms-keyframes rmvtop {
+	0% {}
+	100% {-ms-transform:translateY(-200%)}
+	}
+	@-webkit-keyframes mvfast {
+	0% {}
+	100% {top:-300%}
+	}
+	@-moz-keyframes mvfast {
+	0% {}
+	100% {top:-300%}
+	}
+	@-o-keyframes mvfast {
+	0% {}
+	100% {top:-300%}
+	}
+	@-ms-keyframes mvfast {
+	0% {}
+	100% {top:-300%}
+	}
+	@-webkit-keyframes mvBottom2 {
+	0% {bottom:-100%;opacity:0}
+	100% {bottom:50%;opacity:1}
+	}
+	@-moz-keyframes mvBottom2 {
+	0% {bottom:-100%;opacity:0}
+	100% {bottom:50%;opacity:1}
+	}
+	@-o-keyframes mvBottom2 {
+	0% {bottom:-100%;opacity:0}
+	100% {bottom:50%;opacity:1}
+	}
+	@-ms-keyframes mvBottom2 {
+	0% {bottom:-100%;opacity:0}
+	100% {bottom:50%;opacity:1}
+	}
+	@-webkit-keyframes rmvBottom2 {
+	0% {bottom:50%;opacity:1}
+	100% {bottom:-100%;opacity:0}
+	}
+	@-moz-keyframes rmvBottom2 {
+	0% {bottom:50%;opacity:1}
+	100% {bottom:-100%;opacity:0}
+	}
+	@-o-keyframes rmvBottom2 {
+	0% {bottom:50%;opacity:1}
+	100% {bottom:-100%;opacity:0}
+	}
+	@-ms-keyframes rmvBottom2 {
+	0% {bottom:50%;opacity:1}
+	100% {bottom:-100%;opacity:0}
+	}
+	@-webkit-keyframes mvBottom3 {
+	0% {bottom:35%}
+	100% {bottom:50%}
+	}
+	@-moz-keyframes mvBottom3 {
+	0% {bottom:35%}
+	100% {bottom:50%}
+	}
+	@-o-keyframes mvBottom3 {
+	0% {bottom:35%}
+	100% {bottom:50%}
+	}
+	@-ms-keyframes mvBottom3 {
+	0% {bottom:35%}
+	100% {bottom:50%}
+	}
+	@-webkit-keyframes rmvBottom3 {
+	0% {}
+	100% {bottom:60%}
+	}
+	@-moz-keyframes rmvBottom3 {
+	0% {}
+	100% {bottom:60%}
+	}
+	@-o-keyframes rmvBottom3 {
+	0% {}
+	100% {bottom:60%}
+	}
+	@-ms-keyframes rmvBottom3 {
+	0% {}
+	100% {bottom:60%}
+	}
+	@-webkit-keyframes opacityef {
+	0% {opacity:1}
+	100% {opacity:0}
+	}
+	@-moz-keyframes opacityef {
+	0% {opacity:1}
+	100% {opacity:0}
+	}
+	@-o-keyframes opacityef {
+	0% {opacity:1}
+	100% {opacity:0}
+	}
+	@-ms-keyframes opacityef {
+	0% {opacity:1}
+	100% {opacity:0}
+	}
+	@-webkit-keyframes ropacityef {
+	0% {opacity:0}
+	100% {opacity:1}
+	}
+	@-moz-keyframes ropacityef {
+	0% {opacity:0}
+	100% {opacity:1}
+	}
+	@-o-keyframes ropacityef {
+	0% {opacity:0}
+	100% {opacity:1}
+	}
+	@-ms-keyframes ropacityef {
+	0% {opacity:0}
+	100% {opacity:1}
+	}
+	@-webkit-keyframes txtmember {
+	0% {opacity:0;-webkit-transform:translateY(-40px)}
+	100% {opacity:1;-webkit-transform:translateY(0)}
+	}
+	@-moz-keyframes txtmember {
+	0% {opacity:0;-moz-transform:translateY(-40px)}
+	100% {opacity:1;-moz-transform:translateY(0)}
+	}
+	@-o-keyframes txtmember {
+	0% {opacity:0;-o-transform:translateY(-40px)}
+	100% {opacity:1;-o-transform:translateY(0)}
+	}
+	@-ms-keyframes txtmember {
+	0% {opacity:0;-ms-transform:translateY(-40px)}
+	100% {opacity:1;-ms-transform:translateY(0)}
+	}
+	@-webkit-keyframes txtmember2 {
+	0% {}
+	100% {opacity:0;-webkit-transform:translateY(-40px)}
+	}
+	@-moz-keyframes txtmember2 {
+	0% {}
+	100% {opacity:0;-moz-transform:translateY(-40px)}
+	}
+	@-o-keyframes txtmember2 {
+	0% {}
+	100% {opacity:0;-o-transform:translateY(-40px)}
+	}
+	@-ms-keyframes txtmember2 {
+	0% {}
+	100% {opacity:0;-ms-transform:translateY(-40px)}
+	}
+	@-webkit-keyframes chmember {
+	0% {-webkit-transform:translateY(0)}
+	25% {-webkit-transform:translateY(-3px)}
+	50% {-webkit-transform:translateY(0)}
+	75% {-webkit-transform:translateY(3px)}
+	100% {-webkit-transform:translateY(0)}
+	}
+	@-moz-keyframes chmember {
+	0% {-moz-transform:translateY(0)}
+	25% {-moz-transform:translateY(-3px)}
+	50% {-moz-transform:translateY(0)}
+	75% {-moz-transform:translateY(3px)}
+	100% {-moz-transform:translateY(0)}
+	}
+	@-o-keyframes chmember {
+	0% {-o-transform:translateY(0)}
+	25% {-o-transform:translateY(-3px)}
+	50% {-o-transform:translateY(0)}
+	75% {-o-transform:translateY(3px)}
+	100% {-o-transform:translateY(0)}
+	}
+	@-ms-keyframes chmember {
+	0% {-ms-transform:translateY(0)}
+	25% {-ms-transform:translateY(-3px)}
+	50% {-ms-transform:translateY(0)}
+	75% {-ms-transform:translateY(3px)}
+	100% {-ms-transform:translateY(0)}
+	}
+	@-webkit-keyframes mvphone1 {
+	0% {}
+	60% {opacity:1}
+	100% {top:-200%;opacity:0}
+	}
+	@-moz-keyframes mvphone1 {
+	0% {}
+	60% {opacity:1}
+	100% {top:-200%;opacity:0}
+	}
+	@-o-keyframes mvphone1 {
+	0% {}
+	60% {opacity:1}
+	100% {top:-200%;opacity:0}
+	}
+	@-ms-keyframes mvphone1 {
+	0% {}
+	60% {opacity:1}
+	100% {top:-200%;opacity:0}
+	}
+	@-webkit-keyframes bgtype1 {
+	0% {background-color:#fce811}
+	100% {background-color:transparent}
+	}
+	@-moz-keyframes bgtype1 {
+	0% {background-color:#fce811}
+	100% {background-color:transparent}
+	}
+	@-o-keyframes bgtype1 {
+	0% {background-color:#fce811}
+	100% {background-color:transparent}
+	}
+	@-ms-keyframes bgtype1 {
+	0% {background-color:#fce811}
+	100% {background-color:transparent}
+	}
+	@-webkit-keyframes fast {
+	0% {left:1px}
+	100% {left:124px}
+	}
+	@-moz-keyframes fast {
+	0% {left:1px}
+	100% {left:124px}
+	}
+	@-o-keyframes fast {
+	0% {left:1px}
+	100% {left:124px}
+	}
+	@-ms-keyframes fast {
+	0% {left:1px}
+	100% {left:124px}
+	}
+	@-webkit-keyframes frametype1 {
+	30% {border-color:#f0f0f0}
+	100% {border-color:#fff}
+	}
+	@-moz-keyframes frametype1 {
+	30% {border-color:#f0f0f0}
+	100% {border-color:#fff}
+	}
+	@-o-keyframes frametype1 {
+	30% {border-color:#f0f0f0}
+	100% {border-color:#fff}
+	}
+	@-ms-keyframes frametype1 {
+	30% {border-color:#f0f0f0}
+	100% {border-color:#fff}
+	}
+	@-webkit-keyframes frametype2 {
+	30% {border-color:#fff}
+	100% {border-color:#fce811}
+	}
+	@-moz-keyframes frametype2 {
+	30% {border-color:#fff}
+	100% {border-color:#fce811}
+	}
+	@-o-keyframes frametype2 {
+	30% {border-color:#fff}
+	100% {border-color:#fce811}
+	}
+	@-ms-keyframes frametype2 {
+	30% {border-color:#fff}
+	100% {border-color:#fce811}
+	}
+	@-webkit-keyframes rframetype2 {
+	0% {}
+	100% {border-color:#fff}
+	}
+	@-moz-keyframes rframetype2 {
+	0% {}
+	100% {border-color:#fff}
+	}
+	@-o-keyframes rframetype2 {
+	0% {}
+	100% {border-color:#fff}
+	}
+	@-ms-keyframes rframetype2 {
+	0% {}
+	100% {border-color:#fff}
+	}
+	@-webkit-keyframes frametype3 {
+	0% {border-color:#fce811}
+	100% {border-color:#f8f8f8}
+	}
+	@-moz-keyframes frametype3 {
+	0% {border-color:#fce811}
+	100% {border-color:#f8f8f8}
+	}
+	@-o-keyframes frametype3 {
+	0% {border-color:#fce811}
+	100% {border-color:#f8f8f8}
+	}
+	@-ms-keyframes frametype3 {
+	0% {border-color:#fce811}
+	100% {border-color:#f8f8f8}
+	}
+	@-webkit-keyframes tframe {
+	0% {width:236px;height:426px;margin-left:-119px}
+	70% {width:236px;height:426px;margin-left:-119px}
+	100% {width:426px;height:236px;margin-left:-214px}
+	}
+	@-moz-keyframes tframe {
+	0% {width:236px;height:426px;margin-left:-119px}
+	70% {width:236px;height:426px;margin-left:-119px}
+	100% {width:426px;height:236px;margin-left:-214px}
+	}
+	@-o-keyframes tframe {
+	0% {width:236px;height:426px;margin-left:-119px}
+	70% {width:236px;height:426px;margin-left:-119px}
+	100% {width:426px;height:236px;margin-left:-214px}
+	}
+	@-ms-keyframes tframe {
+	0% {width:236px;height:426px;margin-left:-119px}
+	70% {width:236px;height:426px;margin-left:-119px}
+	100% {width:426px;height:236px;margin-left:-214px}
+	}
+	@-webkit-keyframes rtframe {
+	0% {width:426px;height:236px;margin-left:-214px}
+	40% {width:236px;height:426px;margin-left:-120px}
+	100% {width:236px;height:426px;margin-left:-120px}
+	}
+	@-moz-keyframes rtframe {
+	0% {width:426px;height:236px;margin-left:-214px}
+	40% {width:236px;height:426px;margin-left:-120px}
+	100% {width:236px;height:426px;margin-left:-120px}
+	}
+	@-o-keyframes rtframe {
+	0% {width:426px;height:236px;margin-left:-214px}
+	40% {width:236px;height:426px;margin-left:-120px}
+	100% {width:236px;height:426px;margin-left:-120px}
+	}
+	@-ms-keyframes rtframe {
+	0% {width:426px;height:236px;margin-left:-214px}
+	40% {width:236px;height:426px;margin-left:-120px}
+	100% {width:236px;height:426px;margin-left:-120px}
+	}
+	@-webkit-keyframes video {
+	0% {width:426px;height:236px;margin-left:-214px}
+	100% {width:1020px;height:572px;margin-left:-510px;margin-top:-286px}
+	}
+	@-moz-keyframes video {
+	0% {width:426px;height:236px;margin-left:-214px}
+	100% {width:1020px;height:572px;margin-left:-510px;margin-top:-286px}
+	}
+	@-o-keyframes video {
+	0% {width:426px;height:236px;margin-left:-214px}
+	100% {width:1020px;height:572px;margin-left:-510px;margin-top:-286px}
+	}
+	@-ms-keyframes video {
+	0% {width:426px;height:236px;margin-left:-214px}
+	100% {width:1020px;height:572px;margin-left:-510px;margin-top:-286px}
+	}
+	@-webkit-keyframes mvphonetype3 {
+	0% {top:200%}
+	100% {top:50%}
+	}
+	@-moz-keyframes mvphonetype3 {
+	0% {top:200%}
+	100% {top:50%}
+	}
+	@-o-keyframes mvphonetype3 {
+	0% {top:200%}
+	100% {top:50%}
+	}
+	@-ms-keyframes mvphonetype3 {
+	0% {top:200%}
+	100% {top:50%}
+	}
+	@-webkit-keyframes mvtalk {
+	0% {top:338px}
+	100% {top:225px}
+	}
+	@-moz-keyframes mvtalk {
+	0% {top:338px}
+	100% {top:225px}
+	}
+	@-o-keyframes mvtalk {
+	0% {top:338px}
+	100% {top:225px}
+	}
+	@-ms-keyframes mvtalk {
+	0% {top:338px}
+	100% {top:225px}
+	}
+	@-webkit-keyframes phonetype4 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	}
+	@-moz-keyframes phonetype4 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	}
+	@-o-keyframes phonetype4 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	}
+	@-ms-keyframes phonetype4 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	}
+	@-webkit-keyframes frametype4 {
+	0% {border-color:#f8f8f8}
+	100% {border-color:#000;opacity:.15}
+	}
+	@-moz-keyframes frametype4 {
+	0% {border-color:#f8f8f8}
+	100% {border-color:#000;opacity:.15}
+	}
+	@-o-keyframes frametype4 {
+	0% {border-color:#f8f8f8}
+	100% {border-color:#000;opacity:.15}
+	}
+	@-ms-keyframes frametype4 {
+	0% {border-color:#f8f8f8}
+	100% {border-color:#000;opacity:.15}
+	}
+	@-webkit-keyframes siren {
+	0% {background-position:0 0}
+	100% {background-position:0 -500px}
+	}
+	@-moz-keyframes siren {
+	0% {background-position:0 0}
+	100% {background-position:0 -500px}
+	}
+	@-o-keyframes siren {
+	0% {background-position:0 0}
+	100% {background-position:0 -500px}
+	}
+	@-ms-keyframes siren {
+	0% {background-position:0 0}
+	100% {background-position:0 -500px}
+	}
+	@-webkit-keyframes numclick {
+	0% {background-position:-70px 0}
+	100% {background-position:-350px 0}
+	}
+	@-moz-keyframes numclick {
+	0% {background-position:-70px 0}
+	100% {background-position:-350px 0}
+	}
+	@-o-keyframes numclick {
+	0% {background-position:-70px 0}
+	100% {background-position:-350px 0}
+	}
+	@-ms-keyframes numclick {
+	0% {background-position:-70px 0}
+	100% {background-position:-350px 0}
+	}
+	@-webkit-keyframes numreset {
+	0% {background-position:0}
+	100% {background-position:-70px 0}
+	}
+	@-moz-keyframes numreset {
+	0% {background-position:0}
+	100% {background-position:-70px 0}
+	}
+	@-o-keyframes numreset {
+	0% {background-position:0}
+	100% {background-position:-70px 0}
+	}
+	@-ms-keyframes numreset {
+	0% {background-position:0 0}
+	100% {background-position:-70px 0}
+	}
+	@-webkit-keyframes phonetype5 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone4.png) no-repeat 0 0}
+	}
+	@-moz-keyframes phonetype5 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone4.png) no-repeat 0 0}
+	}
+	@-o-keyframes phonetype5 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone4.png) no-repeat 0 0}
+	}
+	@-ms-keyframes phonetype5 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone3.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone4.png) no-repeat 0 0}
+	}
+	@-webkit-keyframes frametype5 {
+	0% {border-color:#000;opacity:.15}
+	100% {border-color:#232529;opacity:1}
+	}
+	@-moz-keyframes frametype5 {
+	0% {border-color:#000;opacity:.15}
+	100% {border-color:#232529;opacity:1}
+	}
+	@-o-keyframes frametype5 {
+	0% {border-color:#000;opacity:.15}
+	100% {border-color:#232529;opacity:1}
+	}
+	@-ms-keyframes frametype5 {
+	0% {border-color:#000;opacity:.15}
+	100% {border-color:#232529;opacity:1}
+	}
+	@-webkit-keyframes insidecard {
+	0% {background-position:0 430px}
+	100% {background-position:0 0}
+	}
+	@-moz-keyframes insidecard {
+	0% {background-position:0 430px}
+	100% {background-position:0 0}
+	}
+	@-o-keyframes insidecard {
+	0% {background-position:0 430px}
+	100% {background-position:0 0}
+	}
+	@-ms-keyframes insidecard {
+	0% {background-position:0 430px}
+	100% {background-position:0 0}
+	}
+	@-webkit-keyframes txtcredit {
+	0% {opacity:1;-webkit-transform:translateY(70px)}
+	100% {opacity:1;-webkit-transform:translateY(0)}
+	}
+	@-moz-keyframes txtcredit {
+	0% {opacity:1;-moz-transform:translateY(70px)}
+	100% {opacity:1;-moz-transform:translateY(0)}
+	}
+	@-o-keyframes txtcredit {
+	0% {opacity:1;-o-transform:translateY(70px)}
+	100% {opacity:1;-o-transform:translateY(0)}
+	}
+	@-ms-keyframes txtcredit {
+	0% {opacity:1;-ms-transform:translateY(70px)}
+	100% {opacity:1;-ms-transform:translateY(0)}
+	}
+	@-webkit-keyframes card {
+	0% {opacity:1;-webkit-transform:translateY(800px) perspective(500px) rotateX(45deg)}
+	30% {-webkit-transform:translateY(200px) scale(0.44,0.44)}
+	100% {opacity:1;-webkit-transform:translateY(-68px) scale(0.44,0.44)}
+	}
+	@-moz-keyframes card {
+	0% {opacity:1;-moz-transform:translateY(800px) perspective(500px) rotateX(45deg)}
+	30% {-moz-transform:translateY(200px) scale(0.44,0.44)}
+	100% {opacity:1;-moz-transform:translateY(-68px) scale(0.44,0.44)}
+	}
+	@-o-keyframes card {
+	0% {opacity:1;-o-transform:translateY(800px) perspective(500px) rotateX(45deg)}
+	30% {-o-transform:translateY(200px) scale(0.44,0.44)}
+	100% {opacity:1;-o-transform:translateY(-68px) scale(0.44,0.44)}
+	}
+	@-ms-keyframes card {
+	0% {opacity:1;-ms-transform:translateY(800px) perspective(500px) rotateX(45deg)}
+	30% {-ms-transform:translateY(200px) scale(0.44,0.44)}
+	100% {opacity:1;-ms-transform:translateY(-68px) scale(0.44,0.44)}
+	}
+	@-webkit-keyframes cardtxt {
+	0% {top:300px}
+	100% {top:385px;opacity:1}
+	}
+	@-moz-keyframes cardtxt {
+	0% {top:300px}
+	100% {top:385px;opacity:1}
+	}
+	@-o-keyframes cardtxt {
+	0% {top:300px}
+	100% {top:385px;opacity:1}
+	}
+	@-ms-keyframes cardtxt {
+	0% {top:300px}
+	100% {top:385px;opacity:1}
+	}
+	@-webkit-keyframes phonetype6 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone5.png) no-repeat 0 0}
+	}
+	@-moz-keyframes phonetype6 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone5.png) no-repeat 0 0}
+	}
+	@-o-keyframes phonetype6 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone5.png) no-repeat 0 0}
+	}
+	@-ms-keyframes phonetype6 {
+	0% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone2.png) no-repeat 0 0}
+	100% {background:url(http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_phone5.png) no-repeat 0 0}
+	}
+	@-webkit-keyframes beam {
+	0% {width:0}
+	100% {width:100%}
+	}
+	@-moz-keyframes beam {
+	0% {width:0}
+	100% {width:100%}
+	}
+	@-o-keyframes beam {
+	0% {width:0}
+	100% {width:100%}
+	}
+	@-ms-keyframes beam {
+	0% {width:0}
+	100% {width:100%}
+	}
+	@-webkit-keyframes beam2 {
+	0% {background-color:rgba(249,217,0)}
+	100% {background-color:rgba(249,217,0,1)}
+	}
+	@-moz-keyframes beam2 {
+	0% {background-color:rgba(249,217,0)}
+	100% {background-color:rgba(249,217,0,1)}
+	}
+	@-o-keyframes beam2 {
+	0% {background-color:rgba(249,217,0)}
+	100% {background-color:rgba(249,217,0,1)}
+	}
+	@-ms-keyframes beam2 {
+	0% {background-color:rgba(249,217,0)}
+	100% {background-color:rgba(249,217,0,1)}
+	}
+	@-webkit-keyframes type3point {
+	0% {opacity:0;-webkit-transform:translateY(150px)}
+	100% {opacity:1;-webkit-transform:translateY(0)}
+	}
+	@-moz-keyframes type3point {
+	0% {opacity:0;-moz-transform:translateY(150px)}
+	100% {opacity:1;-moz-transform:translateY(0)}
+	}
+	@-o-keyframes type3point {
+	0% {opacity:0;-o-transform:translateY(150px)}
+	100% {opacity:1;-o-transform:translateY(0)}
+	}
+	@-ms-keyframes type3point {
+	0% {opacity:0;-ms-transform:translateY(150px)}
+	100% {opacity:1;-ms-transform:translateY(0)}
+	}
+	@-webkit-keyframes door {
+	0% {background-color:#626874;-webkit-transform:rotateY(180deg)}
+	100% {background-color:#3e424b;-webkit-transform:rotateY(0)}
+	}
+	@-moz-keyframes door {
+	0% {background-color:#626874;-moz-transform:rotateY(180deg)}
+	100% {background-color:#3e424b;-moz-transform:rotateY(0)}
+	}
+	@-o-keyframes door {
+	0% {background-color:#626874;-o-transform:rotateY(180deg)}
+	100% {background-color:#3e424b;-o-transform:rotateY(0)}
+	}
+	@-ms-keyframes door {
+	0% {background-color:#626874;-ms-transform:rotateY(180deg)}
+	100% {background-color:#3e424b;-ms-transform:rotateY(0)}
+	}
+	@-webkit-keyframes light {
+	0% {background-position:0 0}
+	100% {background-position:0 -60px}
+	}
+	@-moz-keyframes light {
+	0% {background-position:0 0}
+	100% {background-position:0 -60px}
+	}
+	@-o-keyframes light {
+	0% {background-position:0 0}
+	100% {background-position:0 -60px}
+	}
+	@-ms-keyframes light {
+	0% {background-position:0 0}
+	100% {background-position:0 -60px}
+	}
+	@-webkit-keyframes knob {
+	0% {}
+	100% {-webkit-transform:rotateZ(360deg)}
+	}
+	@-moz-keyframes knob {
+	0% {}
+	100% {-moz-transform:rotateZ(360deg)}
+	}
+	@-o-keyframes knob {
+	0% {}
+	100% {-o-transform:rotateZ(360deg)}
+	}
+	@-ms-keyframes knob {
+	0% {}
+	100% {-ms-transform:rotateZ(360deg)}
+	}
+</style>
+</head>
+<body>
+<div id="daumPromotion" class="promotion_scene0"><!-- 장면마다 클래스 교체 promotion_scene1~promotion_scene7 -->
+	<div id="daumHead">
+		<h1 class="tit_kakaopay"><a href="#none" id="daumServiceLogo" class="img_logo">KakaoPay</a></h1>
+	</div>
+	<hr class="hide">
+	<div id="daumContent">
+		<span class="img_phone"></span>
+		<span class="frame_phone"></span>
+		<div class="intro_kakaopay intro_type1"><!-- 공통적으로 다른화면전환 이전에 해당되는 화면부분에 off 추가 로 화면전환 효과 추가 -->
+			<div class="inner_kakaopay"></div>
+			<strong class="tit_intro"><span class="txt_intro txt_best">가장</span><span class="txt_intro txt_fast">빠르게</span><span class="txt_intro txt_pay">모바일 결제한다.</span></strong>
+			<div class="info_phone">
+				<span class="img_phone"><span class="ico_intro ico_neo"></span></span>
+				<button type="button" class="ico_intro btn_pay" onclick='javascript:clearSceneClass();$("#daumPromotion").addClass("promotion_scene2");setTimeout(function(){_actionFlag=false;},1000);'>결제하기<span class="ico_intro ico_arr"></span><span class="ico_intro ico_effect"></span></button>
+				<span class="img_figure"></span>
+			</div>
+			<p class="txt_intro desc_intro">더 없이 빨라졌습니다. 그래서 더 쉬워졌습니다.복잡한 모바일 결제를 바꾼 카카오의 새로운 제안. 이제, 카카오페이로 모바일쇼핑의 패턴을 바꾸세요.</p>
+		</div>
+		<div class="intro_kakaopay intro_type2"><!-- *중요* 2(영상부분)에서 3번화면으로 전환시 1초 정도 시간 여유 주세요.(영상프레임 변형 시간 필요), 영상컨트롤 : video_on 추가 -->
+			<span class="dimmed_layer"></span>
+			<div class="bg_video" style="margin-left:0;">
+				<video autoplay="" class="video_play" loop="" muted="">
+					<source src="http://mud-kage.kakao.com/dn/bJL6kN/btqbLvBlH9A/bwKLUo2XmNhvZ35tWsQ5I1/img_l.mp4" type="video/mp4">
+				</video>
+			</div>
+			<div class="info_phone">
+				<div class="video_phone"><!-- 영상 재생 클릭하면 상단 "영상컨트롤" 부분에 클래스 추가 -->
+					<span class="thumb_video">
+						<iframe allowfullscreen="" frameborder="0" height="572px" id="promo_movie" src="" width="1020px" wmode="Opaque"></iframe>
+					</span>
+					<button type="button" class="ico_intro btn_play">재생</button>
+				</div>
+				<button type="button" class="ico_intro btn_close" id="popup_play_close">닫기</button>
+			</div>
+			<p class="txt_intro desc_intro">카카오톡 안에서 개인카드(신용/체크)를 등록하여 다양한 곳에서 결제시 간단하게 비밀번호만으로 결제할 수 있는 모바일 결제 서비스입니다. 본인명의 핸드폰에서 본인명의 카드로만 등록 후 사용 가능하여 명의도용 걱정없이 안전하게 이용하실 수 있습니다.</p>
+		</div>
+		<div class="intro_kakaopay intro_type3">
+			<strong class="txt_intro tit_intro">이미 카카오톡 안에</strong>
+			<strong class="txt_intro tit_point">탑재</strong>
+			<div class="info_phone">
+				<span class="ico_intro ico_talk1"></span>
+				<span class="ico_intro ico_talk2"></span>
+				<span class="ico_intro txt_talk"></span>
+			</div>
+			<p class="txt_intro desc_intro">전국민 스마트폰 사용자 중 97%가 사용하는 카카오톡에 이미 탑재되어 있기 때문에 별도의 어플을 설치할 필요가 없어요! 카카오톡 &gt; 더보기 &gt; 설정 &gt; 카카오페이에서 지금 바로 확인해보세요.</p>
+		</div>
+		<div class="intro_kakaopay intro_type4">
+			<strong class="txt_intro tit_intro">비밀번호 만으로</strong>
+			<strong class="txt_intro tit_point">즉시결제</strong>
+			<div class="info_phone play_phone" id='warning_phone'><!-- 애니메이션 반복플레이 하기 위해 애니메이션이 끝나면 reset_phone 시작할때 play_phone 반복적으로 호출해주세요. -->
+				<span class="ico_pw ico_pw1"></span>
+				<span class="ico_pw ico_pw2"></span>
+				<span class="ico_pw ico_pw3"></span>
+				<span class="ico_pw ico_pw4"></span>
+				<span class="ico_pw ico_pw5"></span>
+				<span class="ico_pw ico_pw6"></span>
+				<span class="img_click img_num3"></span>
+				<span class="img_click img_num4"></span>
+				<span class="img_click img_num8"></span>
+				<span class="img_click img_num2"></span>
+				<span class="img_click img_num9"></span>
+				<span class="img_click img_num0"></span>
+				<span class="img_siren"></span>
+			</div>
+			<p class="txt_intro desc_intro">매번 Active X 설치에 카드번호, 유효기간, 비밀번호 입력하느라 모바일 결제 포기하신 적 많으시죠? 카카오페이는 최초 1회만 카드 등록하면 비밀번호만으로 결제 끝.</p>
+		</div>
+		<div class="intro_kakaopay intro_type5">
+			<strong class="txt_intro2 tit_intro">내가 가진 신용&amp;체크 카드로</strong>
+			<span class="txt_intro2 tit_point"></span>
+			<div class="info_phone">
+				<span class="img_card img_card1"></span><!-- 2014-12-12 수정 : img_card1 추가 -->
+				<span class="img_card img_card2"></span>
+				<span class="img_card img_card3"></span>
+				<span class="img_card img_card4"></span>
+				<span class="img_card img_card5"></span>
+				<span class="img_card img_card6"></span><!-- 2014-12-12 수정 : img_card1 -> img_card6 -->
+				<span class="ico_intro txt_max">MAX 20</span>
+			</div>
+			<p class="txt_intro2 desc_intro">새로운 카드 발급 없이 가지고 계신 카드로 편리하게 이용하세요! <em>카드사 구분없이</em> 다양한 카드를 한꺼번에 최대 20개까지 등록하시고 원하는 카드를 선택해서 결제하세요! 놀랍게도 등록된 모든 카드는 <em>1개의 비밀번호</em>로 이용할 수 있습니다.</p>
+		</div>
+		<div class="intro_kakaopay intro_type6">
+			<strong class="txt_intro2 tit_intro">철통보안 시스템으로</strong>
+			<strong class="txt_intro2 tit_point">안전하게</strong>
+			<!-- <strong class="txt_intro2 tit_point2"></strong> 2014-12-12 삭제 -->
+			<span class="beam_intro beam_bg1"></span>
+			<span class="beam_intro beam_bg2"></span>
+			<span class="beam_intro beam_play1"></span>
+			<span class="beam_intro beam_play2"></span>
+			<span class="beam_intro beam_play3"></span>
+			<div class="info_phone">
+				<span class="img_door img_back"></span>
+				<span class="img_door img_front"></span>
+			</div>
+			<span class="img_shock" id="zizizig" style="display:none;"></span><!-- 2014-12-17 수정 : img_shock1 : 디폴트, img_shock2 : 감전타입1, img_shock3 : 감전타입2 - 세개의 타입 스크립트로 숫자 변경하여 감전효과 넣어주세요, 1. 손이 생기면서 2. 서서히 올라온 후(top:-100% -> top:50%) 3. 위아래로 왔다갔다 모션도 들어가야합니다. (제이콥께서 설명해주실거에요) -->
+			<p class="txt_intro2 desc_intro">카카오페이에서 사용하는 결제 모듈은 암호화된 결제 정보(카드정보, 개인정보)를 사용자 스마트폰과 데이터센터에 분리 저장해 카드정보와 개인정보의 유출을 원천 봉쇄합니다. 2014년 7월 11일, 금융감독원의 보안 “가군”인증을 받은 국내 최초이자 유일한 공인인증서 대체 기술로 인정받았습니다.</p>
+		</div>
+		<div class="intro_kakaopay intro_type7">
+			<!-- 2014-12-15 수정 시작 -->
+			<strong class="txt_intro2 tit_member">가장 빠른 모바일결제 카카오페이</strong>
+			<p class="txt_intro2 desc_member">카카오톡 선물하기에서부터 마트/홈쇼핑까지 다양한 곳에서 카카오페이를 만나보세요. 결제 수단 선택시 카카오페이가 있는지 확인해보세요. </p>
+			<!-- 2014-12-15 수정 끝 -->
+			<em class="screen_out">가맹점</em>
+			<img src="http://i1.daumcdn.net/img-contents/event/promotion/141222_kakaopay/img_member.jpg" class="img_member" alt="카카오페이 가맹점">
+			<!-- div class="intro_bnr" style="display:none"><img src="http://html.ftdev.daum.net/pc-2014/promotion/kakaopay_141203/images/temp/bnr_sample.jpg" alt="배너 대체텍스트"></div><!-- 배너 없을 경우 삭제, 2014-12-12 수정 : 스크롤을 끝까지 내렸을 경우 bnr_on 추가 -->
+			<div class="intro_company">
+				<div class="inner_company">
+					<strong class="txt_intro2 tit_company">가장 빠른 모바일결제 KakaoPay</strong>
+					<div class="desc_company">
+						<address class="info_company">대표이사. 최세훈,이석우 주소. 제주특별자치도 제주시 첨단로 242 (영평동)</address>
+						<small class="info_copyright">Copyright &copy; <a href="#none" target="_blank" class="link_daumkakao">Daum Kakao Corp.</a> All rights reserved.</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="intro_etc">
+			<div class="paging_intro">
+				<span class="screen_out">현재페이지</span>
+				<a href="#none" class="link_page on" onclick="javascript:setScene(1);">1</a><!-- 2014-12-16 수정 : 현재 페이지일 경우 on 클래스 추가 -->
+				<a href="#none" class="link_page" onclick="javascript:setScene(2);">2</a>
+				<a href="#none" class="link_page" onclick="javascript:setScene(3);">3</a>
+				<a href="#none" class="link_page" onclick="javascript:setScene(4);">4</a>
+				<a href="#none" class="link_page" onclick="javascript:setScene(5);">5</a>
+				<a href="#none" class="link_page" onclick="javascript:setScene(6);">6</a>
+				<a href="#none" class="link_page" onclick="javascript:setScene(7);">7</a>
+			</div>
+			<a href="https://cnspay.lgcns.com/request/request_register.dev" target="_blank" class="link_member loading_member">
+				<span class="ico_intro txt_member">가맹신청</span>
+				<!-- <span class="frame_member"></span> 2014-12-12 삭제 -->
+				<span class="ico_intro ico_member"></span>
+			</a>
+		</div>
+	</div>
+	<hr class="hide">
+</div>
+<div class="dimmed_layer" style="display:block"></div><!-- 레이어 열릴 경우 display:block 추가, 콘텐츠 전체 높이값 넣어주세요 -->
+<div class="kakaopay_layer" style="display:block" id="popup_intro_layer">
+	<div class="inner_kakaopay_layer inner_kakaopay_layer1">
+		<div class="layer_body">
+			<img src="http://mud-kage.kakao.com/dn/2YW7u/btqbRJTOrLv/9Myu0mXvaHfa4FMobdqvm1/img_l.png" width="800" height="600" alt="2014 언빌리버블 선물대전. 무엇을 사든 5,000원 드림. 선착순 100만명. 지금, 선물하기에서 카카오페이로 결제하면 현금처럼 사용가능한 카카오포인트 5,000P를 드려요. 12.17~12.31"><!-- 2014-12-23 수정 -->
+		</div>
+		<div class="layer_foot">
+			<button class="ico_intro btn_close" id="popup_intro_close" type="button">닫기</button>
+		</div>
+	</div>
+</div>
+</body>
+</html>

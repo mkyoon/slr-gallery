@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>스르륵갤러리 | 방송)디지털개발국</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="css/custom.css" rel="stylesheet" />
+</head>
+<body data-role="document">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="index.html" class="navbar-brand">디지털개발국 스르륵갤러리</a>
+		</div>
+		<!-- navbar-collapse -->
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-role="button">Category <span class="caret"></span></a>
+					<ul class="dropdown-menu" data-role="menu">
+						<li><a href="list.html">Design</a></li>
+						<li><a href="list.html">UI</a></li>
+						<li><a href="list.html">Web</a></li>
+						<li><a href="list.html">App</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-role="button">Search <span class="caret"></span></a>
+					<div class="dropdown-menu" data-role="menu">
+						<form action="">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search for..." />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><span class="sr-only">Search</span><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
+						</form>
+					</div>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="write.html">글쓰기</a></li>
+				<li><a href="#">마이페이지</a></li>
+				<li><a href="#">로그아웃</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#loginModal">로그인</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#signinModal">회원가입</a></li>
+			</ul>
+		</div>
+		<!-- //navbar-collapse -->
+	</div>
+</nav>
+
+<div class="container" data-role="main">
+
+	<div class="page-header">
+		<h2><br />Write</h2>
+	</div>
+	
+	<div class="">
+		<div class="form-group">
+			<label for="subject">제목</label>
+			<input type="text" class="form-control" id="subject" placeholder="제목을 입력해 주세요." />
+		</div>
+		<div class="">
+			<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span> 이미지</button> 
+			<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> 스크랩</button>
+		</div>
+		<div class="editor">
+			<p>
+				<button type="button" class="btn btn-default active"><span class="glyphicon glyphicon-bold"></span><span class="sr-only">진하게</span></button>
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-text-width"></span><span class="sr-only">밑줄</span></button>
+				| 
+				<button type="button" class="btn btn-default active"><span class="glyphicon glyphicon-align-left"></span><span class="sr-only">왼쪽 정렬</span></button>
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-center"></span><span class="sr-only">가운데 정렬</span></button>
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-right"></span><span class="sr-only">오른쪽 정렬</span></button>
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-justify"></span><span class="sr-only">양쪽 맞춤</span></button>
+				| 
+				<select class="form-control">
+					<option value="">폰트</option>
+					<option value="dotum">돋움</option>
+					<option value="gulim">굴림</option>
+					<option value="batang">바탕</option>
+					<option value="gungsuh">궁서</option>
+					<option value="arial">Arial</option>
+					<option value="tahoma">Tahoma</option>
+					<option value="verdana">Verdana</option>
+				</select>
+				<select class="form-control">
+					<option value="">글자 크기</option>
+					<option value="9px">9px</option>
+					<option value="10px">10px</option>
+					<option value="11px">11px</option>
+					<option value="12px">12px</option>
+					<option value="14px">14px</option>
+					<option value="18px">18px</option>
+				</select>
+				|
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-text-color"></span><span class="sr-only">글자 색상</span></button>
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-text-background"></span><span class="sr-only">배경 색상</span></button>
+			</p>
+			
+			<div class="content">
+				<textarea class="form-control" rows="10" cols="40"></textarea>
+			</div> 
+		</div>
+		<div class="well attached">
+			<img class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1LjUiIHk9IjEwMCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjIwMHgyMDA8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width:60px; height:60px;" />
+		</div>
+		<div class="form-group">
+			<label for="category">카테고리</label>
+			<select id="category" class="form-control">
+				<option value="">카테고리 없음</option>
+				<option value="design">Design</option>
+				<option value="ui">UI</option>
+				<option value="web">Web</option>
+				<option value="app">App</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="tag">태그달기</label>
+			<input type="text" class="form-control" id="tag" placeholder="구분은 쉼표(,)" />
+		</div>
+		<div class="buttons text-center">
+			<button type="button" class="btn btn-default">미리보기</button>
+			<button type="button" class="btn btn-default">임시저장</button>
+			<button type="submit" class="btn btn-primary">저장하기</button>
+			<button type="button" class="btn btn-default">취소</button>
+		</div>
+	</div>
+	
+	<div class="page-header">
+		<h2><span class="sr-only">Footer</span></h2>
+	</div>
+	
+	<div class="well">
+		Powered by 디지털개발국<br />
+		Copyright 디지털개발국. All rights reserved.
+	</div>
+
+</div>
+
+
+<!-- Modals -->
+<div class="modal fade" id="loginModal" tabindex="-1" data-role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>로그인</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="loginId">아이디</label>
+					<input type="text" class="form-control" id="loginID" placeholder="CJ ONE 아이디" />
+				</div>
+				<div class="form-group">
+					<label for="loginPW">비밀번호</label>
+					<input type="password" class="form-control" id="loginPW" placeholder="" />
+				</div>
+				<p>
+					<a href="https://www.cjone.com/cjmportal/hpuf70T1Form.do" target="_blank">CJ ONE ID 찾기</a> / 
+					<a href="#">비밀번호 찾기</a>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">로그인</button>				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="signinModal" tabindex="-1" data-role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>회원가입</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="signinID">아이디</label>
+					<input type="text" class="form-control" id="signinID" placeholder="CJ ONE ID" />
+				</div>
+				<div class="form-group">
+					<label for="signinName">이름</label>
+					<input type="text" class="form-control" id="signinName" placeholder="Name" />
+				</div>
+				<div class="form-group">
+					<button type="button" class="btn btn-default">CJ ONE 회원확인</button>
+					<span>확인되었습니다.</span>
+				</div>
+				<div class="form-group">
+					<label for="signinPW">비밀번호</label>
+					<input type="password" class="form-control" id="signinPW" placeholder="" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">가입하기</button>				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$('.dropdown-menu').click(function(e) {
+		e.stopPropagation();
+	});
+</script>
+</body>
+</html>

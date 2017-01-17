@@ -1,0 +1,23 @@
+
+.gnb {left:0;}
+.gnb-search {top:20px; right:270px;}
+.gnb-search .search-on {display:block;}
+.gnb-search .search-form input {display:inline-block; width:60%; height:auto; padding-left:1%; padding-right:1%;}
+.gnb-search .search-form .input-group-btn {display:inline-block; width:35%;}
+.gnb-search .search-form .btn {width:45%;}
+
+.sidebar {width:180px;}
+.sidebar h3 + .dropdown {z-index:10;}
+
+.page-container {padding-top:80px;}
+
+.item-container {float:left; width:256px;}
+.item-container h3 {width:228px;}
+.item-detail .user {height:18px;}
+.item-text .img-frame {height:0;}
+
+.view-info {top:80px;}
+
+.mypage .view-info {top:80px;}
+.mypage .nav-tabs {height:62px; overflow:hidden;}
+.mypage .item-container {float:left; width:222px;}

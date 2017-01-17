@@ -1,0 +1,337 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>카카오페이</title>
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+	<meta name="format-detection" content="telephone=no">
+	<script type="text/javascript" src="/assets/jquery.min1.js"></script>
+	<script type="text/javascript" src="/assets/jquery.event.drag-1.5.min.js"></script>
+	<script type="text/javascript" src="/assets/jquery.touchSlider.js"></script>
+
+
+	<script>
+		$(function(){
+			$(".link_join").click(function(){
+				$(".img_join").attr("src","http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_evt7_tab.png");
+			});
+			$(".link_play").click(function(){
+				$(".img_play").attr("src","http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_evt2_tab.png");
+			});
+		});
+	</script>
+	<style type="text/css">
+		/* reset */
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button{margin:0;padding:0}
+		fieldset,img{border:0 none}
+		dl,ul,ol,menu,li {list-style:none}
+		blockquote, q {quotes:none}
+		blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+		input,select,textarea,button {vertical-align:middle;font-size:100%}
+		button {border:0 none;background-color:transparent;cursor:pointer}
+		table {border-collapse:collapse;border-spacing:0}
+		body{-webkit-text-size-adjust:none} /* 뷰표트 변환시 폰트크기 자동확대 방지. */
+		input:checked[type='checkbox'] {background-color:#666; -webkit-appearance:checkbox}
+		input[type='text'],input[type='password'],input[type='submit'],input[type='search'],input[type='tel'],input[type='email'],html input[type='button'],input[type='reset'] {-webkit-appearance:none;border-radius:0}
+		input[type='search']::-webkit-search-cancel-button {-webkit-appearance:none}
+		body {background:#fff}
+		body,th,td,input,select,textarea,button {font-size:14px;line-height:1.5;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;color:#333}
+		a {color:#333;text-decoration:none}
+		a:active, a:hover {text-decoration:none}
+		address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+
+		/* global */
+		.ir_pm {display:block;overflow:hidden;font-size:0px;line-height:0;text-indent:-9999px}
+		.ir_wa {display:block;overflow:hidden;position:relative;z-index:-1;width:100%;height:100%}
+		.screen_out {overflow:hidden;position:absolute;width:0;height:0;line-height:0;text-indent:-9999px}
+		.f_l {float:left}
+		.f_r {float:right}
+		.cl_b {clear:both;width:0;height:0;font-size:0;line-height:0}
+		.show {display:block}
+		.hide {display:none}
+
+		/* kakaopay event */
+		.kakaopay_prm {overflow-y:hidden;position:relative;width:100%;min-width:320px} /* 2015-01-27 수정 */
+		.img_prm {width:100%;vertical-align:top}
+		.p_head {position:fixed;top:0;left:0;z-index:100;width:100%}
+		.btn_member {position:absolute;top:24%;right:3%;z-index:200;width:25%;height:90%}
+		.p_cont li {position:absolute;top:0;z-index:50;width:100%;height:100%}
+		.pay_evt1 {left:0;background:url(http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_evt1.png) 0 50% no-repeat;background-size:100% auto}
+		.pay_evt2 {left:100%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_evt2.png) 0 50% no-repeat;background-size:100% auto}
+		.pay_evt2 .btn_play {position:absolute;bottom:20%;left:0;z-index:200;width:100%}
+		.pay_evt2 .link_play {display:block;position:absolute;top:0;right:8%;width:26%;height:100%;text-indent:-9999px}
+		.pay_evt3 {left:200%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_evt3.png) 0 50% no-repeat;background-size:100% auto}
+		.pay_evt4 {left:300%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_evt4.png) 0 50% no-repeat;background-size:100% auto}
+		.pay_evt5 {left:400%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_evt5.png) 0 50% no-repeat;background-size:100% auto}
+		.pay_evt6 {left:500%;background:url(http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_evt6.png) 0 50% no-repeat;background-size:100% auto}
+		/* 2015-01-28 수정 시작 */
+		.pay_evt7 {overflow-y:auto;left:600%;background-color:#e7e6e1} /* 2015-01-29 수정 */
+		.pay_evt7 .mem_table {position:absolute;top:12%;left:0;z-index:20;width:100%;background-color:#e7e6e1}
+		.pay_evt7 .mem_table_row {overflow: hidden;width:100%;margin-bottom:3%}
+		.pay_evt7 .mem_table_row .link_g {float: left;width: 33.3333%;}
+		.pay_evt7 .btn_join {position: relative;width:100%;margin:10% 0 25%}
+		.pay_evt7 .link_join {display:block;position:absolute;bottom:0;left:50%;width:30%;height:72%;margin-left: -15%;text-indent:-9999px}
+		/* 2015-01-28 수정 끝 */
+		/* 2015-01-26 수정 시작 */
+		.pay_evt7 .bar_top {position:fixed;top:0;left:0;z-index:30;}
+		.pay_evt7 .bar_bottom {position:fixed;bottom:0;left:0;z-index:30;}
+		.pay_paging {position:fixed;bottom:0;left:0;z-index:100;width:100%}
+		.pay_bnr {position:fixed;bottom:0;left:0;z-index:150;width:100%}
+		.pay_bnr .link_flag {position:absolute;bottom: 0;right:4%;z-index:160;width:60%;height:90%;text-indent:-9999px}
+		/* 2015-01-26 수정 끝 */
+
+
+	</style>
+	<script type="text/javascript" src="http://m1.daumcdn.net/svc/original/U03/cssjs/userAgent/userAgent-1.0.12.min.js"></script>
+	<script type="text/javascript" src="http://m1.daumcdn.net/svc/original/U03/cssjs/daumtools/1.0.4/web2app.js"></script>
+	<script type="text/javascript">
+
+
+		$(document).ready(function() {
+
+			$("#daumPromotion").css('height', $(window).height() +'px' );
+
+
+			var varTop = $("#bar_top"),
+					varBottom = $("#bar_bottom");
+
+			$("#daumContent").touchSlider({
+				flexible : true,
+				speed : 200,
+				counter : function (e) {
+					if("1" ==  e.current){
+						$("#imgTop").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head1.png");
+						$("#imgBottom").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging01.png");
+
+						changeDisp(varTop, "1");
+						changeDisp(varBottom, "1");
+						chngBanner("1");
+
+					}else if ("2" == e.current){
+						$("#imgTop").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head2.png");
+						$("#imgBottom").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging02.png");
+
+						$("#bar_top").css('display', 'none');
+						$("#bar_bottom").css('display', 'none');
+
+						chngBanner("2");
+					}else if ("3" == e.current){
+						$("#imgTop").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head3.png");
+						$("#imgBottom").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging03.png");
+
+						$("#bar_top").css('display', 'none');
+						$("#bar_bottom").css('display', 'none');
+
+						chngBanner("3");
+					}else if ("4" == e.current){
+						$("#imgTop").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head4.png");
+						$("#imgBottom").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging04.png");
+
+						$("#bar_top").css('display', 'none');
+						$("#bar_bottom").css('display', 'none');
+
+						chngBanner("4");
+					}else if ("5" == e.current){
+						$("#imgTop").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head5.png");
+						$("#imgBottom").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging05.png");
+						$("#bar_top").css('display', 'none');
+						$("#bar_bottom").css('display', 'none');
+
+						chngBanner("5");
+					}else if ("6" == e.current){
+						$("#imgTop").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head6.png");
+						$("#imgBottom").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging06.png");
+
+						changeDisp(varTop, "6");
+						changeDisp(varBottom, "6");
+
+						chngBanner("6");
+
+					}else if ("7" == e.current){
+						$("#imgTop").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head7.png");
+						$("#imgBottom").attr("src", "http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging07.png");
+
+						changeDisp(varTop, "7");
+						changeDisp(varBottom, "7");
+						chngBanner("7");
+
+						//$("#paybanimg").attr("src", "http://mud-kage.kakao.com/dn/bfRizz/btqbRG3Rk35/IkcGne914wQ2QJiiT7RPck/img_l.png");
+					}
+				}
+			});
+
+			function changeDisp(obj, seq){
+				if (seq == "1" || seq== "6"){
+					if($(obj).css("display") == "block"){
+						$(obj).css('display','none').load(function() {
+							obj.fadeOut('fast');
+						});
+					}
+				}else{
+					if($(obj).css("display") == "none"){
+						$(obj).css('display','block').load(function() {
+							obj.fadein('fast');
+						});
+					}
+				}
+
+			}
+
+			function chngBanner(seq){
+				if(seq == "7"){
+//					if($("#payban").css("display") == "none"){
+//
+//					}
+					$("#payban").css("display","block");
+					$("#paylink").prop('href', "tel:0220992424")
+					$("#payban2").css("display","none");
+				}else{
+//					if($("#payban1").css("display") == "block"){
+//
+//					}
+					$("#payban").css("display","none");
+					$("#payban2").css("display","block");
+				}
+			}
+
+		});
+
+		var os_type = "PC";
+
+		if(navigator.userAgent.match(/android/i)){
+			os_type = "AND";
+		}else{
+			os_type = "IOS";
+		}
+
+		function goKakaoPay(){
+			var ua = util.userAgent();
+			var urlScheme = "kakaotalk://kakaopay/link?target=1",
+					intentURI = ua.os.android ? "intent://kakaopay/setting#Intent;scheme=kakaotalk;package=com.kakao.talk;end" :"kakaotalk://kakaopay/setting";
+			appStoreURL =  ua.os.android ? "market://details?id=com.kakao.talk" : "http://itunes.apple.com/app/id362057947?mt=8";
+
+			if("AND" == os_type || "IOS" == os_type){
+				daumtools.web2app({
+					urlScheme: urlScheme,
+					intentURI: intentURI,
+					storeURL : appStoreURL,
+					appName : "카카오페이",
+					onUnsupportedEnvironment: function() {
+						console.log("Error : 알수 없는 오류가 발생했습니다.");
+					},
+					willInvokeApp: function() {}
+				});
+			}else{
+				alert("모바일 기기에서 이용 가능한 기능입니다.\r\n카카오픽앱이 설치된 스마트폰에서 이용해 주세요.");
+			}
+		}
+
+		if ( window.navigator.userAgent.search("Opera Mobi")>-1) {
+			if ( $("a[href^='tel:']'").length ) fe_operaMobi();
+		}
+
+		function fe_operaMobi(){
+			$("a[href^='tel:']").each(function(){
+				var telHref = $(this).attr("href");
+				if(telHref.indexOf("?")>0){
+					var thisSplit = $(this).attr("href").split("?");
+					$(this).attr("href",thisSplit[0]);
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+<div id="daumPromotion" class="kakaopay_prm" style="height:640px"> <!-- 각 디바이스 높이값 넣어주세요 -->
+	<div class="p_head">
+		<img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_head1.png" alt="" id="imgTop" class="img_prm" > <!-- 슬라이딩 :pay_head1~7 로 이미지명 변경 -->
+		<h1 class="ir_pm">KakaoPay</h1>
+		<a href="javascript:goKakaoPay();" class="ir_pm btn_member">등록하기</a>
+	</div>
+	<div id="daumContent" class="p_cont">
+		<ul class="list_evt">
+			<li class="pay_evt1">
+				<strong class="ir_pm">가장 빠른 모바일결제 카카오페이</strong>
+				<p class="ir_pm">더 없이 빨라졌습니다. 그래서 더 쉬워졌습니다. 복잡한 모바일 결제를 바꾼 카카오의 새로운 제안. 이제, 카카오페이로 모바일쇼핑의 패턴을 바꾸세요.</p>
+			</li>
+			<li class="pay_evt2" > <!-- style="left:0" 삭제해주세요 -->
+				<strong class="ir_pm">카카오페이란?</strong>
+				<p class="ir_pm">카카오톡 안에서 개인카드(신용/체크)를 등록하여 다양한 곳에서 결제시 간단하게 비밀번호만으로 결제할 수 있는 모바일 결제 서비스입니다.</p>
+				<div class="btn_play">
+					<img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_evt2.png" alt="play" class="img_prm img_play" />
+					<a href="http://tvpot.daum.net/v/v7fbat4t5J5YzqzTqn4DjTT" class="link_play">play</a>
+				</div>
+			</li>
+			<li class="pay_evt3"> <!-- style="left:0" 삭제해주세요 -->
+				<strong class="ir_pm">이미 카카오톡 안에 탑재</strong>
+				<p class="ir_pm">별도의 어플을 설치할 필요없이 카카오톡 &#62; 더보기에서 지금 바로 확인해보세요.</p>
+			</li>
+			<li class="pay_evt4"> <!-- style="left:0" 삭제해주세요 -->
+				<strong class="ir_pm">비밀번호만으로 즉시결제</strong>
+				<p class="ir_pm">최초 1회만 카드 등록하면 비밀번호만으로 결제 끝.</p>
+			</li>
+			<li class="pay_evt5"> <!-- style="left:0" 삭제해주세요 -->
+				<strong class="ir_pm">내가 가진 신용&#38;체크카드로</strong>
+				<p class="ir_pm">가지고 계신 카드를 카드사 구분없이 한꺼번에 최대 20개까지 등록하시고 원하는 카드를 선택해서 결제하세요! 놀랍게도 등록된 모든 카드는 1개의 비밀번호로 이용할 수 있습니다. </p>
+			</li>
+			<li class="pay_evt6"> <!-- style="left:0" 삭제해주세요 -->
+				<strong class="ir_pm">철통보안시스템으로 안전하게</strong>
+				<p class="ir_pm">카카오페이에서 사용하는 결제 모듈은 암호화된 결제 정보(카드정보, 개인정보)를 사용자 스마트폰과 데이터센터에 분리 저장해 카드정보와 개인정보의 유출을 원천 봉쇄합니다.  2014년 7월 11일, 금융감독원의 보안 “가군”인증</p>
+			</li>
+			<li class="pay_evt7"> <!-- style="left:0" 삭제해주세요 -->
+				<strong class="ir_pm">카카오페이 가맹점</strong>
+				<div class="mem_table">
+					<div class="mem_table_row">
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem1.png" alt="선물하기" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem2.png" alt="KakaoPick" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem3.png" alt="GS SHOP" class="img_prm" /></a>
+					</div>
+					<div class="mem_table_row">
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem4.png" alt="롯데홈쇼핑" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem5.png" alt="홈&#38;쇼핑" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem6.png" alt="7 ELEVEN" class="img_prm" /></a>
+					</div>
+					<div class="mem_table_row">
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem7.png" alt="알라딘" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem8.png" alt="배달통" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem9.png" alt="배달의 민족" class="img_prm" /></a>
+					</div>
+					<div class="mem_table_row">
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem10.png" alt="배달365" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem11.png" alt="CINEFOX" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem12.png" alt="올리브가든" class="img_prm" /></a>
+					</div>
+					<div class="mem_table_row">
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem13.png" alt="ZEROWEB" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem14.png" alt="이니스프리" class="img_prm" /></a>
+						<a href="#none" class="link_g"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_mem15.png" alt="아모레퍼시픽" class="img_prm" /></a>
+					</div>
+					<div class="btn_join">
+						<!--  <img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/btn_evt7.png" alt="다양한 곳에서 결제 수단 선택시 카카오페이가 있는지 확인해보세요." class="img_prm img_join" /> -->
+						<!--  <a href="tel:0220992424" class="link_join">가맹신청</a> -->
+
+						<!--  가맹신청 버튼제거 -->
+						<img src="http://mud-kage.kakao.com/dn/cXgKE/btqbRFDRynO/xKSZI5l1aXVXfJqnHreK10/img_l.png" alt="다양한 곳에서 결제 수단 선택시 카카오페이가 있는지 확인해보세요." class="img_prm img_join" />
+					</div>
+					<div class="bar_top"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/bar_evt7_top.png" id="bar_top" alt="" class="img_prm"  style="display:none"/></div>
+					<div class="bar_bottom"><img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/bar_evt7_bot.png" id="bar_bottom" alt="" class="img_prm"  style="display:none"/></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="pay_paging">
+		<img src="http://i1.daumcdn.net/img-contents/event/promotion/150121_kakaopay/pay_paging01.png" alt="" id="imgBottom" class="img_prm" > <!-- 슬라이딩 :pay_paging1~7 로 이미지명 변경 -->
+	</div>
+
+	<div class="pay_bnr" id="payban" style="display:none;" >
+		<img src="http://mud-kage.kakao.com/dn/bfRizz/btqbRG3Rk35/IkcGne914wQ2QJiiT7RPck/img_l.png" id="paybanimg" alt="" class="img_prm" >
+		<a href="http://wwww.daum.net" id="paylink" class="link_flag">모바일 태극기 달기11</a>
+	</div>
+	<div class="pay_bnr" id="payban2" style="display:block;" >
+		<img src="/assets/pay/pay_intro_mw_banner2_150130.png" id="paybanimg" alt="" class="img_prm" >
+		<a href="http://paybiz-web.kakao.com/event/kakaopay/index201502/kakaopay_01.html" id="paylink" class="link_flag">모바일 태극기 달기11</a>
+	</div>
+</div>
+</body>
+</html>
